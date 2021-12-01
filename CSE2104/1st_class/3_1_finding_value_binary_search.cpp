@@ -12,6 +12,8 @@ using namespace std;
 int main ()
 {
     int array[] = {1,2,3,4,5,6,7,8};
+
+    //int array[] = {8,7,6,5,4,3,2,1}; if the array is descending then the 2nd and third condition of if else will be opposite
     int key ;
 
 
@@ -27,9 +29,6 @@ int main ()
     //optional variable to find out the position 
     int position = 0;
     bool is_value_found = false;
-
-   
-
 
    // cout << "upper Bound is " <<upper_bound<< endl;
    // cout << "Lower Bound is " <<lower_bound<< endl;
