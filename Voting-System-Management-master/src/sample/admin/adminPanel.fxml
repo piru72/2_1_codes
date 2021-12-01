@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.admin.AdminPanel">
+    <children>
+        <BorderPane prefHeight="600.0" prefWidth="800.0">
+            <top>
+                <ScrollPane prefHeight="200.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="tableView" prefHeight="200.0" prefWidth="786.0">
+                                    <columns>
+                                        <TableColumn fx:id="colVoterID" onEditCommit="#changeVoterIDEvent" prefWidth="108.79998779296875" text="Voter ID" />
+                                        <TableColumn fx:id="colName" onEditCommit="#changeNameEvent" prefWidth="180.79995423555374" text="Name" />
+                                        <TableColumn fx:id="colDateOfBirth" minWidth="0.0" onEditCommit="#changeDateOfBirthEvent" prefWidth="141.6000518798828" text="Date Of Birth" />
+                                        <TableColumn fx:id="colSex" onEditCommit="#changeSexEvent" prefWidth="91.99993896484375" text="Sex" />
+                                        <TableColumn fx:id="colPhoneNumber" onEditCommit="#changePhoneNumberEvent" prefWidth="160.79998779296875" text="Phone Number" />
+                                        <TableColumn fx:id="colPassword" onEditCommit="#changePasswordEvent" prefWidth="109.5999755859375" text="Password" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
+            </top>
+            <bottom>
+                <HBox prefHeight="76.0" prefWidth="800.0" spacing="30.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#addVoter" prefHeight="44.0" prefWidth="101.0" stylesheets="@../../stylesheet.css" text="Add Voter" textFill="WHITE">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="Open Sans Semibold" size="16.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Button fx:id="removeVoter" mnemonicParsing="false" onAction="#removeVoter" prefHeight="44.0" prefWidth="131.0" style="-fx-background-color: red;" text="Remove Voter" textFill="WHITE">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <font>
+                                <Font name="Open Sans Semibold" size="16.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                  <Button fx:id="adminLogOut" mnemonicParsing="false" onAction="#adminLogOut" style="-fx-background-color: red;" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="35.0" top="35.0" />
+                     </HBox.margin>
+                  </Button>
+                    </children>
+               <BorderPane.margin>
+                  <Insets left="350.0" />
+               </BorderPane.margin>
+                </HBox>
+            </bottom>
+            <left>
+                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                    <image>
+                        <Image url="@../../Resources/33308.png" />
+                    </image>
+                    <BorderPane.margin>
+                        <Insets left="20.0" />
+                    </BorderPane.margin>
+                </ImageView>
+            </left>
+        </BorderPane>
+        <TextField fx:id="name" layoutX="356.0" layoutY="224.0" prefHeight="31.0" prefWidth="306.0" promptText="Full Name" style="-fx-border-color: #511281;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </TextField>
+      <Label layoutX="7.0" layoutY="435.0" text="Voter Registration" textFill="#7734a6">
+         <font>
+            <Font name="Open Sans Semibold" size="22.0" />
+         </font>
+      </Label>
+        <TextField fx:id="phoneNumber" layoutX="356.0" layoutY="352.0" prefHeight="31.0" prefWidth="306.0" promptText="Insert Phone Number" style="-fx-border-color: #511281;">
+            <font>
+                <Font name="Open Sans" size="14.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="voterID" layoutX="356.0" layoutY="403.0" prefHeight="31.0" prefWidth="306.0" promptText="Insert Voter ID" style="-fx-border-color: #511281;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </TextField>
+        <Text fill="#511281" layoutX="232.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+            <font>
+                <Font name="Open Sans" size="16.0" />
+            </font>
+        </Text>
+        <Text fill="#511281" layoutX="232.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Birth">
+            <font>
+                <Font name="Open Sans" size="16.0" />
+            </font>
+        </Text>
+      <Text fill="#511281" layoutX="233.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sex" wrappingWidth="76.5582275390625">
+         <font>
+            <Font name="Open Sans" size="16.0" />
+         </font>
+      </Text>
+        <Text fill="#511281" layoutX="232.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+            <font>
+                <Font name="Open Sans" size="16.0" />
+            </font>
+        </Text>
+        <Text fill="#511281" layoutX="233.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voter ID">
+            <font>
+                <Font name="Open Sans" size="16.0" />
+            </font>
+        </Text>
+      <DatePicker fx:id="dateOfBirth" layoutX="357.0" layoutY="269.0" prefHeight="31.0" prefWidth="306.0" promptText="Select Birth Date" style="-fx-border-color: #511281;" />
+        <PasswordField fx:id="password" layoutX="356.0" layoutY="455.0" prefHeight="31.0" prefWidth="306.0" promptText="Insert Voter ID" style="-fx-border-color: #511281;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </PasswordField>
+      <TextField fx:id="sex" layoutX="355.0" layoutY="310.0" prefHeight="31.0" prefWidth="306.0" promptText="Make/Female/Other" style="-fx-border-color: #511281;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+        <Text fill="#511281" layoutX="231.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Password">
+            <font>
+                <Font name="Open Sans" size="16.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>
