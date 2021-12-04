@@ -8,16 +8,18 @@ int main()
     int array[10];
     int temp;
     int i, j;
+
     for (i = 0; i < 10; i++)
     {
         cout << "Enter the " << i + 1 << " element: ";
         cin >> array[i];
     }
+
     for (i = 0; i < 10; i++)
     {
         for (j = 0; j < 10 - i - 1; j++)
         {
-            if (array[j] > array[j + 1])
+            if (array[j] == array[j + 1])
             {
                 temp = array[j];
                 array[j] = array[j + 1];
