@@ -1,7 +1,5 @@
 //Write a code to search an element from a given sorted array using binary search
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
  int main()
