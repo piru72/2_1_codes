@@ -44,13 +44,5 @@ public class App {
 
         System.out.println("Find the sin value of a" + Math.sin(a));
 
-        
-
-
-
-
-
-
-
     }
 }
