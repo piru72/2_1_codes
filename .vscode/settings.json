@@ -4,5 +4,10 @@
         "ostream": "cpp",
         "cmath": "cpp",
         "utility": "cpp"
-    }
+    },
+    "java.project.sourcePaths": [
+        "CSE2100SD/Arefin_labib",
+        "CSE2100SD/2nd class/Lab2_Part2/src",
+        "CSE2100SD/2nd class/Lab2_JavaSwing/src"
+    ]
 }
