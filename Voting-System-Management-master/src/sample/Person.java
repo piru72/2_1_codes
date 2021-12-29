@@ -55,6 +55,7 @@ public class Person {
     public SimpleStringProperty getVoterSexProperty() {
         return voterSex;
     }
+    //comment
 
     public String getVoterPhoneNumber() {
         return voterPhoneNumber.get();
