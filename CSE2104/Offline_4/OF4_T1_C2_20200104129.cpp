@@ -1,244 +1,84 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-struct node
+
+template <typename T>
+void value_swap(T &a,T &b)
 {
-    int data;
-    node* next;
-
-    node(int val)
-    {
-        data  = val;
-        next = NULL;
-    }
-};
-
-node* head;
-int size;
-
-void INSERT_F(int val)
-{
-    node* n = new node (val);
-    n->next = head;
-    head = n;
-    size ++;
-
-}
- 
-void INSERT_N(int pos, int val)
-{
-    //write your code from below this line with proper indentation
-    if (pos <1 || pos > size +1 )
-    {
-        cout << "Invalid"
-    }
-
-    size ++;
-}
-void INSERT_L(int val)
-{
-    node* n = new node(val);
-
-    if (head == NULL)
-    {
-        INSERT_F(val);
-    }
-    else 
-    {
-        node* temp = head;
-
-        while (temp->next != NULL)
-        {
-        temp = temp-> next;
-        }
-        temp-> next = n;
-
-    }
-    size ++;
-
+   T temp = a;
+   a = b;
+   b = temp;
 
 }
 
-void DELETE_F()
+struct student_information
 {
-    //write your code from below this line with proper indentation
-    node* to_delete= head;
-    head = head->next;
-    delete to_delete;
-}
-void DELETE_N(int position)
-{
-    //write your code from below this line with proper indentation
-    node* temp = head;
-    int i =1;
+    int id;
+    double sub_1_mark;
+    double sub_2_mark;
+    double average_mark;
+}  student[5];
 
-    if (head == NULL)
-    {
-        return;
-    }
-    else if (head->next == NULL)
-    {
-        DELETE_F();
-        return;
-    }
+int number_of_students = 5; //taking input for 5 students
 
-    while( i +1 != position)
-    {
-        temp = temp->next;
-        i++;
-    }
-    node* to_delete = temp->next;
-    temp->next = temp->next->next;
 
-    delete to_delete;
-
-}
-void DELETE_L()
-{
-    //write your code from below this line with proper indentation
-
-    if (head == NULL)
-    {
-        return;
-    }
-    else if (head->next == NULL)
-    {
-        delete head;
-        return;
-    }
-
-    node* temp = head;
-
-    while(temp->next->next != NULL)
-    {
-        temp = temp->next;
-    }
-    delete temp->next;
-    temp->next = NULL;
-
-}
-int SEARCH(int val)
-{
-    node* temp = head;
-    int i = 1;
-
-    while(temp != NULL)
-    {   
-      
-        if (temp->data == val)
-        {
-            return i;
-        }
-        temp = temp->next;
-          i++;
-    }
-
-    return -1;
-    
-}
-void PRINT()
-{
-    //write your code from below this line with proper indentation
-
-    node* temp = head;
-
-    while ( temp != NULL)
-    {
-        cout << temp ->data << "->";
-        temp= temp->next;
-    }
-
-}
-int main()
+void information_input()
 {
     
-    head = NULL;
-
-    INSERT_L(1);
-    INSERT_L(2);
-    INSERT_L(3);
-    INSERT_F(4);
-    INSERT_F(5);
-
-
-    PRINT();
-    int position = SEARCH(2);
-
-    cout<< "The position is 1 is found at " << position << endl; 
-    //DELETE_N(3);
-    DELETE_F();
-    DELETE_L();
-    PRINT();
-    
-
-
-   // int x,n;
-
-    // while(true)
-    // {
-      
-      
-
-    //     cout << "1. Insert First\n2. Insert N\n3. Insert Last\n4. Delete First\n5. Delete N\n6. Delete Last\n7. Print\n8. Search\n9. Exit\n"<<endl;
-
-    //     cout << "Enter Choice: "<<endl;
-    //     int ch;
-    //     cin >> ch;
+    for (int i = 0 ; i <number_of_students ; i++) // taking the user input
+    {
+        cout << "Id"<<endl;
+        cin >> student[i].id;
+        cout << "Subject 1 Mark"<<endl;
+        cin >> student[i].sub_1_mark;
+        cout << "Subject 2 mark"<<endl;
+        cin >> student[i].sub_2_mark;
+        student[i].average_mark = (student[i].sub_1_mark+student[i].sub_2_mark) / 2;
         
+    }
 
-    //     switch(ch)
-    //     {
-    //     case 1:
+}
+
+void information_output()
+{
+    cout << "Id\t" << "Subject 1\t" << "Subject 2\t" << "Average\t" << endl;
+
+    for(int i = 0 ; i < number_of_students ; i++ )
     
-    //         cout <<"\n Enter value: "<<endl;
-    //         cin>>x;
+    {
+        cout << student[i].id << "\t"<<student[i].sub_1_mark << "\t\t"<<student[i].sub_2_mark << "\t\t" << student[i].average_mark<< "\t" << endl;  //generating the table for showing 
+    }
+}
 
-    //         INSERT_F(x);
-    //         PRINT(node);
-    //         break;
-    //     case 2:
+void sorting()
+{
+ 
+    for (int i = 0; i <number_of_students  ; i++) // using bubble sort to sort the structures in descending way based on average mark
+    {
+        
+        for (int j = 0 ; j < number_of_students-i  ; j++)
+        {
             
-            
-    //         cout <<"\n Enter value, position: "<<endl;
-    //         cin>>x;
-    //         cin>>n;
+            if (student[j].average_mark < student[j+1].average_mark )
+            {
+                value_swap(student[j].average_mark,student[j+1].average_mark); //swapping the values bu calling value_swap function
+                value_swap(student[j].id,student[j+1].id);
+                value_swap(student[j].sub_1_mark,student[j+1].sub_1_mark);
+                value_swap(student[j].sub_2_mark,student[j+1].sub_2_mark);
+                
+            }
+        }
+    }
 
-    //         INSERT_N(x,n);
-    //         break;
-    //     case 3:
-    //          cout <<"\n Enter value: "<<endl;
-    //          cin>>x;
+}
 
-    //         INSERT_L(x);
-    //         break;
-    //     case 4:
-    //         DELETE_F();
-    //         break;
-    //     case 5:
-            
-    //         cout << "\nEnter a position: " <<endl;
-    //         cin >> n;
-    //         DELETE_N(n);
-    //         break;
-    //     case 6:
-    //         DELETE_L();
-    //         break;
-    //     case 7:
-    //         PRINT();
-    //         break;
-    //     case 8:
-    //         cout <<"\n Enter value: "<<endl;
-    //         cin>>x;
-    //         cout << "\n Value found at position " << SEARCH(x);
-    //         break;
 
-    //     case 9:
-    //         return 0;
-    //         break;
-    //     default:
-    //         continue;
-    //     }
-    // }
+int main ()
+{
+    information_input(); // taking input from the user
+    sorting(); // sorting the structure according to the average mark
+    information_output(); // showing the sorted marks table
 
     return 0;
 }
+

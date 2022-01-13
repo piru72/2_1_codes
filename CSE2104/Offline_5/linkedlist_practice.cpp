@@ -64,16 +64,16 @@ int SEARCH(int val)
 }
 void DELETE_F()
 {
-    //write your code from below this line with proper indentation
-    node* to_delete= head;
+    
+    node* temp= head;
     head = head->next;
-    delete to_delete;
+    delete temp;
 
 }
 
 void DELETE_N(int position)
 {
-    //write your code from below this line with proper indentation
+    
 
     node* temp = head;
     int i =1;
