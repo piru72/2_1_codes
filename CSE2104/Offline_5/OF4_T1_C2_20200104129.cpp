@@ -22,14 +22,11 @@ void INSERT_F(int val)
     n->next = head;
     head = n;
     size ++;
-
-    //cout << "Size is increased by 1 in First pos" << size << endl;
-
 }
  
 void INSERT_N(int pos, int val)
 {
-    //write your code from below this line with proper indentation
+    
     if (pos <1 || pos > size +1 )
     {
         cout << "Invalid";

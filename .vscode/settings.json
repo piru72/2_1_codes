@@ -3,7 +3,13 @@
         "iostream": "cpp",
         "ostream": "cpp",
         "cmath": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "xstring": "cpp",
+        "algorithm": "cpp",
+        "initializer_list": "cpp",
+        "type_traits": "cpp",
+        "vector": "cpp",
+        "xutility": "cpp"
     },
     "java.project.sourcePaths": [
         "CSE2100SD/Arefin_labib",

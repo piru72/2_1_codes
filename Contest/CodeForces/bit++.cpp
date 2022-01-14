@@ -20,14 +20,14 @@ using namespace std;
 
 int main ()
 {
-    int n ;
+    int n;
+    string s;
     cin >> n;
-    int x = 0;
+    int x=0;
     for (int i = 0; i < n; i++)
     {
-        string s;
         cin >> s;
-        if (s == "++X" || s == "++x") ++x;
+        if (s == "++X" || s == "X++") ++x;
         else --x;
     }
     cout << x;
