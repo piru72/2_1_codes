@@ -23,18 +23,7 @@ void INSERT_F(int val)
     head = n;
     size ++;
 }
- 
-void INSERT_N(int pos, int val)
-{
-    
-    if (pos <1 || pos > size +1 )
-    {
-        cout << "Invalid";
-    }
 
-    size ++;
-   
-}
 void INSERT_L(int val)
 {
     node* n = new node(val);
@@ -55,11 +44,47 @@ void INSERT_L(int val)
         size ++;
 
     }
+}
+ 
+void INSERT_N(int pos, int val)
+{
+    if (pos < 1 || pos > size + 1)
+        cout << "Invalid position!" << endl;
+    else if (pos == 1)
+    {
+        INSERT_F(val);
+    }
+    else if (pos == size+1 )
+    {
+        INSERT_L(val);
+    }
+    else 
+    {
+        node* temp = head;
+        int temp_position = 0;
+         
+
+       node* n = new node (val);
+       node* temp_next = n->next;
+
+        while (temp != NULL)
+        {
+            temp_position++;
+            if (temp_position == pos )
+            {
+                //cout << "Hello world"<< temp_position<< temp->data << endl;
+               
+                n->next = temp;
+                temp = temp_next;
+                break;
+            }
+           temp= temp->next;
+        }
+    }
+}
     
    
-
-
-}
+   
 
 void DELETE_F()
 {
@@ -160,17 +185,19 @@ int main()
     INSERT_F(4);
     INSERT_F(5);
 
+    INSERT_N(2,41);
+
 
     PRINT();
-    cout <<"Size is : "<< size<<endl;
-    int position = SEARCH(2);
+    // cout <<"Size is : "<< size<<endl;
+    // int position = SEARCH(2);
 
-    //cout<< "The position is 1 is found at " << position << endl; 
-    //DELETE_N(3);
-    DELETE_F();
-    DELETE_L();
-    PRINT();
-    cout <<"Size is : "<< size<<endl;
+    // //cout<< "The position is 1 is found at " << position << endl; 
+    // //DELETE_N(3);
+    // DELETE_F();
+    // DELETE_L();
+    // PRINT();
+    // cout <<"Size is : "<< size<<endl;
     
 
 

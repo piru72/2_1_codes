@@ -1,0 +1,1 @@
+nt global_even_minimum;
