@@ -119,22 +119,15 @@ void DELETE_F( Node** head_ref)
 
 void DELETE_N( Node** head_ref, int position)
 {
-   
-    if (*head_ref == NULL || position <= 0)
-        return;
- 
-    struct Node* current = *head_ref;
+    Node* current = *head_ref;
     int i;
 
     for (int i = 1; current != NULL && i < position; i++)
         current = current->next;
- 
-    if (current == NULL)
-        return;
-    
-    if (*head_ref == NULL || current == NULL)
-        return;
 
+    if (*head_ref == NULL || position <= 0 ||current == NULL)
+        return;
+ 
     if (*head_ref == current)
         *head_ref = current->next;
  
@@ -145,7 +138,8 @@ void DELETE_N( Node** head_ref, int position)
     if (current->prev != NULL)
         current->prev->next = current->next;
  
-    free(current);
+    
+    delete current;
    
 }
 
