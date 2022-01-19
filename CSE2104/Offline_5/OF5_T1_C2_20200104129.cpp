@@ -44,7 +44,7 @@ void INSERT_L(int val)
         // finding the address of the last node which is saved in the second last node and adding the new node
         while (temp->next != NULL) 
         {
-        temp = temp-> next;
+            temp = temp-> next;
         }
         temp-> next = n;
         size ++;
