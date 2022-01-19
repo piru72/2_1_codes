@@ -1,1 +1,1 @@
-nt global_even_minimum;
+INSERT_L(&head,8);

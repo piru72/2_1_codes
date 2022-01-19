@@ -40,8 +40,6 @@ void insert_even_node (int val)
     even_head = n;
 }
 
-
-
 void insert_odd_node (int val)
 {
     node* n = new node (val);
@@ -66,11 +64,56 @@ void INSERT_L(int val)
         temp = temp-> next;
         }
         temp-> next = n;
-        size ++;
+     
 
     }
 }
  
+ void INSERT_L_EVEN(int val)
+{
+    node* n = new node(val);
+
+    if (even_head == NULL)
+    {
+        n->next = even_head;
+        even_head = n;
+    }
+    else 
+    {
+        node* temp = even_head;
+
+        while (temp->next != NULL)
+        {
+        temp = temp-> next;
+        }
+        temp-> next = n;
+     
+
+    }
+}
+
+ void INSERT_L_ODD(int val)
+{
+    node* n = new node(val);
+
+    if (odd_head == NULL)
+    {
+        n->next = odd_head;
+        odd_head = n;
+    }
+    else 
+    {
+        node* temp = odd_head;
+
+        while (temp->next != NULL)
+        {
+        temp = temp-> next;
+        }
+        temp-> next = n;
+     
+
+    }
+}
 
 
 
@@ -121,10 +164,10 @@ int even_odd_seperator()
     {
         if (temp->data % 2 == 0)
         {
-            insert_even_node(temp->data);
+            INSERT_L_EVEN(temp->data);
         }
         else 
-            insert_odd_node(temp->data);
+            INSERT_L_ODD(temp->data);
             
         temp = temp->next;
     }
@@ -208,7 +251,7 @@ int main()
     INSERT_L(8);
     
 
-    //PRINT();
+    PRINT();
     cout << endl;
 
     even_odd_seperator();
