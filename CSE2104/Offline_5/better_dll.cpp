@@ -65,7 +65,7 @@ void INSERT_N(Node** head_ref,int new_data, int pos)
     struct Node * newnode, *temp;
     if(*head_ref == NULL) // adding data in empty list is not allowed
     {
-        printf(" Can not enter data in empty list . Insert one data first using other options!\n");
+        cout <<" Can not enter data in empty list . Insert one data first using other options!\n" <<endl;
     }
      else
      {
@@ -77,7 +77,7 @@ void INSERT_N(Node** head_ref,int new_data, int pos)
             i++;
         }
         if (pos  > list_size+1){
-            printf(" The position you entered, is invalid.\n");
+            cout << " The position you entered, is invalid.\n"<< endl;
             }
         else if(pos == 1){
             INSERT_F(head_ref,new_data); // inserting in first position
@@ -234,74 +234,68 @@ int main ()
     Node* head = NULL; 
     int value,position;
 
-    INSERT_F(&head,2);
-     INSERT_F(&head,3);
-      INSERT_F(&head,4);
-       INSERT_L(&head,5);
-    //    INSERT_N(&head,41,2);
-    //    INSERT_N(&head,22,6);
-       DELETE_F(&head);
-       DELETE_L(&head);
-      PRINT(head);
-      PRINT_REV(head);
+    
 
-    // while(true)
-    // {
-    //     printf("1. Insert First\n2. Insert N\n3. Insert Last\n");
-    //     printf("4. Delete First\n5. Delete N\n6. Delete Last\n");
-    //     printf("7. Print\n8. Reverse Print\n9. Search\n");
-    //     printf("10. Exit\n");
-    //     printf("Enter Choice: ");
-    //     int ch;
-    //     scanf("%d",&ch);
+    while(true)
+    {
+        cout << "\n1. Insert First\n2. Insert N\n3. Insert Last\n";
+        cout << "4. Delete First\n5. Delete N\n6. Delete Last\n";
+        cout << "7. Print\n8. Reverse Print\n9. Search\n";
+        cout << "10. Exit\n";
+        cout << "Enter Choice: "<< endl;
+        int ch;
+       
+        cin >> ch;
 
-    //     switch(ch)
-    //     {
-    //     case 1:
-    //         printf("\n Enter value: ");
-    //         scanf("%d",&value);
-    //         INSERT_F(&head,value);
-    //         break;
-    //     case 2:
-    //         printf("\n Enter value, position: ");
-    //         scanf("%d%d",&value,&position);
-    //         INSERT_N(&head,value,position);
-    //         break;
-    //     case 3:
-    //         printf("\n Enter value: ");
-    //         scanf("%d",&value);
-    //         INSERT_L(&head,value);
-    //         break;
-    //     case 4:
-    //         DELETE_F(&head);
-    //         break;
-    //     case 5:
-    //         printf("\n Enter position: ");
-    //         scanf("%d",&position);
-    //         DELETE_N(&head,position);
-    //         break;
-    //     case 6:
-    //         DELETE_L(&head);
-    //         break;
-    //     case 7:
-    //         PRINT(head);
-    //         break;
-    //     case 8:
-    //         PRINT_REV(head);
-    //         break;
-    //     case 9:
-    //         printf("\n Enter value: ");
-    //         scanf("%d",&value);
-    //         printf("Value found at position: %d",SEARCH(head,value));
-    //         break;
-    //     case 10:
-    //         return 0;
-    //         break;
-    //     default:
-    //         continue;
-    //     }
-    // }
+        switch(ch)
+        {
+        case 1:
+            cout << "\n Enter value: "<< endl;
+           
+            cin >> value;
+            INSERT_F(&head,value);
+            break;
+        case 2:
+            cout << "\n Enter value, position: "<< endl;
+            
+            cin >> value >> position;
+            INSERT_N(&head,value,position);
+            break;
+        case 3:
+            cout << "\n Enter value: "<<endl;
+            cin >> value;
+            INSERT_L(&head,value);
+            break;
+        case 4:
+            DELETE_F(&head);
+            break;
+        case 5:
+            cout << "\n Enter position: "<<endl;
+            cin >> position;
+            DELETE_N(&head,position);
+            break;
+        case 6:
+            DELETE_L(&head);
+            break;
+        case 7:
+            PRINT(head);
+            break;
+        case 8:
+            PRINT_REV(head);
+            break;
+        case 9:
+            cout << "\n Enter value: "<<endl;
+            cin >> value;
+            cout << "Value found at position: "<< SEARCH(head,value)<<endl;
+            break;
+        case 10:
+            return 0;
+            break;
+        default:
+            continue;
+        }
+    }
 
-    // return 0;
+   
     return 0; 
 }

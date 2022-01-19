@@ -15,19 +15,20 @@ struct Node
     }
 };
 
-
+int list_size = 0;
 void INSERT_F(Node** head_ref, int new_data) 
 { 
   
-    Node* new_node = new Node(new_data);  
-    new_node->next = (*head_ref); 
-    
+    Node* new_node = new Node(new_data); // creating a node  
+    new_node->next = *head_ref; // linking the old node
 
-   
-    if ((*head_ref) != NULL) 
+    if (*head_ref != NULL) 
         (*head_ref)->prev = new_node;
 
-    (*head_ref) = new_node; 
+    *head_ref = new_node; // creating the new head 
+    list_size++;
+    
+    return;
 } 
 
 void INSERT_L(Node** head_ref, int new_data) 
@@ -36,17 +37,21 @@ void INSERT_L(Node** head_ref, int new_data)
     Node* new_node = new Node(new_data); 
     Node* last = *head_ref; 
 
-    if (*head_ref == NULL)
+    if (*head_ref == NULL) // if the list is empty
     { 
         new_node->prev = NULL; 
         *head_ref = new_node; 
         return; 
     } 
 
-    while (last->next != NULL) 
+    while (last->next != NULL)
+    {
         last = last->next; 
-    last->next = new_node; 
+    }
+        
+    last->next = new_node; //linking the new node in the founded last nodes address
     new_node->prev = last; 
+    list_size++;
 
     return; 
 } 
@@ -57,62 +62,62 @@ void INSERT_N(Node** head_ref,int new_data, int pos)
     
 
     int i;
-    struct Node * newnode, *tmp;
-    if(head_ref == NULL)
+    struct Node * newnode, *temp;
+    if(*head_ref == NULL) // adding data in empty list is not allowed
     {
-        printf(" No data found in the list!\n");
+        cout <<" Can not enter data in empty list . Insert one data first using other options!\n" <<endl;
     }
      else
      {
-        tmp = *head_ref;
+        temp = *head_ref;
         i=1;
-        while(i<pos-1 && tmp!=NULL)
+        while(i<pos-1 && temp!=NULL) // finding the position not crossing last node
         {
-            tmp = tmp->next;
+            temp = temp->next;
             i++;
         }
-        if(pos == 1)
-        {
-            INSERT_F(head_ref,new_data);
+        if (pos  > list_size+1){
+            cout << " The position you entered, is invalid.\n"<< endl;
+            }
+        else if(pos == 1){
+            INSERT_F(head_ref,new_data); // inserting in first position
         }
-        else if(tmp == NULL)
-        {
-            INSERT_L(head_ref,new_data);
+        else if(temp == NULL){
+            INSERT_L(head_ref,new_data); // inserting in first position
         }
-        else if(tmp!=NULL)
+        else if(temp!=NULL)
          {
 
-                Node* new_node = new Node(new_data); 
+                Node* new_node = new Node(new_data); // node creation
            
-                new_node->next = tmp->next; 
+                new_node->next = temp->next; // linking pos node with pos+1 node
+                new_node->prev = temp; // linking pos node with pos-1 node
 
-                new_node->prev = tmp;              
-            if(tmp->next != NULL)
+            if(temp->next != NULL)
             {
-                tmp->next->prev = new_node; 
+                temp->next->prev = new_node;  // linking with pos+1 node
             }
-            tmp->next = new_node; 
+            temp->next = new_node; // linking with pos node
+            list_size++;
          }
-        else
-        {
-            printf(" The position you entered, is invalid.\n");
-        }
+        
       }
 } 
 
-void DELETE_N(struct Node** head_ref, int n);
-
-
-void DELETE_F(struct Node** head_ref) 
+void DELETE_F( Node** head_ref) 
 {
-    Node* current = *head_ref;
-    *head_ref = current->next;
-    current->next->prev = current->prev;
-    free(current);
+    Node* to_delete = *head_ref;
+
+    *head_ref = to_delete->next; // pointing to next node
+
+    to_delete->next->prev = to_delete->prev; // to_delete -> prev value will always be NULL
+    
+    delete to_delete;
+    list_size--;
     
 }
 
-void DELETE_N(struct Node** head_ref, int position)
+void DELETE_N( Node** head_ref, int position)
 {
    
     if (*head_ref == NULL || position <= 0)
@@ -144,21 +149,27 @@ void DELETE_N(struct Node** head_ref, int position)
    
 }
 
-void DELETE_L(struct Node** head_ref)
+void DELETE_L( Node** head_ref)
 {
-        Node* temp = *head_ref;
-      if(temp != NULL) 
+    Node* temp = *head_ref;
+    if (temp == NULL)
+    {
+        return;
+    }
+    else
       {
-        if(temp->next == NULL) {
-          temp = NULL;
+        if(temp->next == NULL) { // if only one node
+          *head_ref = NULL;
+          delete *head_ref;
+          list_size --;
         }
          else {
           
           while(temp->next->next != NULL)
             temp = temp->next;
-          Node* lastNode = temp->next;
+          Node* lastNode = temp->next; // temp-> next hold address of last node
           temp->next = NULL;
-          free(lastNode); 
+          delete lastNode;
         }
       }
 
@@ -170,7 +181,7 @@ int SEARCH( Node* head_ref,int val)
     Node* temp = head_ref;
     int i = 1;
 
-    while(temp != NULL) 
+    while(temp != NULL)  // going till end
     {   
       
         if (temp->data == val) 
@@ -181,7 +192,7 @@ int SEARCH( Node* head_ref,int val)
           i++;
     }
 
-    return -1;
+    return -1; // returning -1 if not found
     
 }
 
@@ -200,7 +211,7 @@ void PRINT(Node* node)
 void PRINT_REV(Node* node)
 {
     
-    Node* last; 
+    Node* last = NULL; 
     while (node != NULL) 
     {  
         last = node; 
@@ -223,39 +234,44 @@ int main ()
     Node* head = NULL; 
     int value,position;
 
+    
+
     while(true)
     {
-        printf("1. Insert First\n2. Insert N\n3. Insert Last\n");
-        printf("4. Delete First\n5. Delete N\n6. Delete Last\n");
-        printf("7. Print\n8. Reverse Print\n9. Search\n");
-        printf("10. Exit\n");
-        printf("Enter Choice: ");
+        cout << "\n1. Insert First\n2. Insert N\n3. Insert Last\n";
+        cout << "4. Delete First\n5. Delete N\n6. Delete Last\n";
+        cout << "7. Print\n8. Reverse Print\n9. Search\n";
+        cout << "10. Exit\n";
+        cout << "Enter Choice: "<< endl;
         int ch;
-        scanf("%d",&ch);
+       
+        cin >> ch;
 
         switch(ch)
         {
         case 1:
-            printf("\n Enter value: ");
-            scanf("%d",&value);
+            cout << "\n Enter value: "<< endl;
+           
+            cin >> value;
             INSERT_F(&head,value);
             break;
         case 2:
-            printf("\n Enter value, position: ");
-            scanf("%d%d",&value,&position);
+            cout << "\n Enter value, position: "<< endl;
+            
+            cin >> value >> position;
             INSERT_N(&head,value,position);
             break;
         case 3:
-            printf("\n Enter value: ");
-            scanf("%d",&value);
+            cout << "\n Enter value: "<<endl;
+            cin >> value;
             INSERT_L(&head,value);
             break;
         case 4:
             DELETE_F(&head);
             break;
         case 5:
-            printf("\n Enter position: ");
-            scanf("%d",&position);
+            cout << "\n Enter position: "<<endl;
+            cin >> position;
             DELETE_N(&head,position);
             break;
         case 6:
@@ -268,9 +284,9 @@ int main ()
             PRINT_REV(head);
             break;
         case 9:
-            printf("\n Enter value: ");
-            scanf("%d",&value);
-            printf("Value found at position: %d",SEARCH(head,value));
+            cout << "\n Enter value: "<<endl;
+            cin >> value;
+            cout << "Value found at position: "<< SEARCH(head,value)<<endl;
             break;
         case 10:
             return 0;
@@ -280,6 +296,6 @@ int main ()
         }
     }
 
-    return 0;
+   
     return 0; 
 }
