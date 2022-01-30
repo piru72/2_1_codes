@@ -50,12 +50,6 @@ public class Welcome_page_uiController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Welcome Page");
-        
-        
-        
-        
-        
-             
         stage.show();
 
     }
