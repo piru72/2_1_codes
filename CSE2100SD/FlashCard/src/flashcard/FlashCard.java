@@ -37,15 +37,15 @@ public class FlashCard extends Application {
         primaryStage.setTitle("Flash Card");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
+        /*
          primaryStage.setOnCloseRequest(event -> {
             event.consume();
             
             exitAction(primaryStage);
-                });
+                }); */
     }
     
-    
+    /*
     private void exitAction(Stage primaryStage) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -60,7 +60,7 @@ public class FlashCard extends Application {
         }
 
     }
-
+*/
     /**
      * @param args the command line arguments
      */
