@@ -149,6 +149,7 @@ public class CreateCardController implements Initializable {
                 myWriter.append(question+ "\n");
                 questionField.setText("");
                 myWriter.close();
+                
 
             } else {
                 System.out.println("File already exists.");
@@ -158,6 +159,7 @@ public class CreateCardController implements Initializable {
                 myWriter.append(question+ "\n");
                 questionField.setText("");
                 myWriter.close();
+              
 
             }
         } catch (IOException e) {
@@ -179,6 +181,7 @@ public class CreateCardController implements Initializable {
                 myWriter.append(answer+ "\n");
                 questionField.setText("");
                 myWriter.close();
+                
 
             } else {
                 System.out.println("File already exists.");
@@ -188,6 +191,7 @@ public class CreateCardController implements Initializable {
                 myWriter.append(answer+ "\n");
                 answerField.setText("");
                 myWriter.close();
+                
 
             }
         } catch (IOException e) {
