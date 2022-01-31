@@ -47,12 +47,12 @@ public class FlashCardController implements Initializable {
     private void exitAction(ActionEvent event) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
+        alert.setTitle("Exit");
         alert.setHeaderText("You are about to exit!");
         alert.setContentText("Do you want to leave ?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("Fuckl java");
+            System.out.println("Fuck java");
             stage = (Stage) scenePane.getScene().getWindow();
             stage.close();
         }
@@ -61,29 +61,23 @@ public class FlashCardController implements Initializable {
     @FXML
     private void createCardAction(ActionEvent event) throws IOException {
 
-
-
-
         try {
             System.out.println("Create Card Action");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("createCard.fxml"));
-        Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("createCard.fxml"));
+            Parent root = loader.load();
 
-        Scene scene = new Scene(root);
+            Scene scene = new Scene(root);
 
-        CreateCardController welcome = loader.getController();
+            CreateCardController welcome = loader.getController();
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Create Flash Card");
-        stage.show();
-            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Create Flash Card");
+            stage.show();
+
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
-        
-
-
 
     }
 

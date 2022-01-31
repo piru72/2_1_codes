@@ -57,7 +57,7 @@ public class CreateCardController implements Initializable {
 
     @FXML
     private TextField answerField;
-    
+
     @FXML
     private TextField questionField;
 
@@ -74,7 +74,6 @@ public class CreateCardController implements Initializable {
 
     @FXML
     void exitAction(ActionEvent event) {
-        //System.out.println("Hello");
 
         try {
             stage = (Stage) exitButton.getScene().getWindow();
@@ -100,14 +99,13 @@ public class CreateCardController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            //TODO: handle exception
+            e.printStackTrace();
         }
 
     }
 
     @FXML
     void playAction(ActionEvent event) {
-        System.out.println("Hello");
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("playCard.fxml"));
@@ -133,7 +131,7 @@ public class CreateCardController implements Initializable {
 
     @FXML
     void nextAction(ActionEvent event) {
-        System.out.println("Action working");
+        //System.out.println("Action working");
     }
 
     @FXML
@@ -142,25 +140,22 @@ public class CreateCardController implements Initializable {
         try {
             File myObj = new File("card_1.txt");
             if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-
+                //System.out.println("File created: " + myObj.getName());
                 Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
 
                 String question = questionField.getText();
-                myWriter.append(question+ "\n");
+                myWriter.append(question + "\n");
                 questionField.setText("");
                 myWriter.close();
-                
 
             } else {
-                System.out.println("File already exists.");
+                //System.out.println("File already exists.");
                 Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
 
                 String question = questionField.getText();
-                myWriter.append(question+ "\n");
+                myWriter.append(question + "\n");
                 questionField.setText("");
                 myWriter.close();
-              
 
             }
         } catch (IOException e) {
@@ -174,25 +169,22 @@ public class CreateCardController implements Initializable {
         try {
             File myObj = new File("card_2.txt");
             if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-
+                //System.out.println("File created: " + myObj.getName());
                 Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
 
                 String answer = answerField.getText();
-                myWriter.append(answer+ "\n");
+                myWriter.append(answer + "\n");
                 questionField.setText("");
                 myWriter.close();
-                
 
             } else {
-                System.out.println("File already exists.");
+                //System.out.println("File already exists.");
                 Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
 
                 String answer = answerField.getText();
-                myWriter.append(answer+ "\n");
+                myWriter.append(answer + "\n");
                 answerField.setText("");
                 myWriter.close();
-                
 
             }
         } catch (IOException e) {

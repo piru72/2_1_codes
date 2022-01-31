@@ -103,7 +103,7 @@ public class PlayCardController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -130,7 +130,7 @@ public class PlayCardController implements Initializable {
                 = new BufferedReader(new FileReader(file));
 
         String st;
-       
+
         int i = 0;
         while ((st = br.readLine()) != null) {
             if (questionNo == i) {
