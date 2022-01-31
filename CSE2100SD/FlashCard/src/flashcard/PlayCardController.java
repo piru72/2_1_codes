@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 
 /**
  * FXML Controller class
@@ -110,7 +111,21 @@ public class PlayCardController implements Initializable {
     @FXML
     void fileAction(ActionEvent event) {
 
-        System.out.println("Action working");
+        System.out.println("File Action working");
+        
+        JFileChooser fileChooser = new JFileChooser();
+         //File file = fileChooser.getSelectedFile();
+         
+         //File file = fileChooser.showOpenDialog(stage);
+        /*
+            int option = fileChooser.showSaveDialog(scenePane);
+            if(option == JFileChooser.APPROVE_OPTION){
+               File file = fileChooser.getSelectedFile();
+               textField.setText("File Saved as: " + file.getName());
+            }else{
+               textField.setText("Save command canceled");
+            }*/
+
     }
 
     @FXML
@@ -122,12 +137,11 @@ public class PlayCardController implements Initializable {
 
     @FXML
     void showAction(ActionEvent event) throws IOException {
-        System.out.println("Action working");
+        //System.out.println("Action working");
 
         File file = new File("card_1.txt");
 
-        BufferedReader br
-                = new BufferedReader(new FileReader(file));
+        BufferedReader br = new BufferedReader(new FileReader(file));
 
         String st;
 
