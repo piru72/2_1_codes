@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -42,6 +44,23 @@ public class CreateCardController implements Initializable {
 
     private AnchorPane scenePane;
     Stage stage;
+
+    @FXML
+    private Button nextButton;
+
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private TextField answerField;
+    @FXML
+    private TextField questionField;
+
+    @FXML
+    private Label question;
+
+    @FXML
+    private Label answer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,6 +118,26 @@ public class CreateCardController implements Initializable {
         } catch (Exception e) {
             
         }
+    }
+
+    @FXML
+    void saveAction(ActionEvent event) {
+System.out.println("Action working");
+    }
+
+    @FXML
+    void nextAction(ActionEvent event) {
+System.out.println("Action working");
+    }
+
+    @FXML
+    void questionAction(ActionEvent event) {
+System.out.println("Action working");
+    }
+
+    @FXML
+    void answerAction(ActionEvent event) {
+System.out.println("Action working");
     }
 
 }

@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -33,15 +34,28 @@ public class PlayCardController implements Initializable {
     private Button createButton;
     @FXML
     private Button homeButton;
-    
+
+    @FXML
+    private Button fileButton;
+
+    @FXML
+    private TextField textField;
+
+    @FXML
+    private Button nextButton;
+
+    @FXML
+    private Button showButton;
+
     Stage stage;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void exitAction(ActionEvent event) {
@@ -88,5 +102,26 @@ public class PlayCardController implements Initializable {
             //TODO: handle exception
         }
     }
-    
+
+    @FXML
+    void fileAction(ActionEvent event) {
+
+        System.out.println("Action working");
+    }
+
+    @FXML
+    void nextAction(ActionEvent event) {
+        System.out.println("Action working");
+    }
+
+    @FXML
+    void showAction(ActionEvent event) {
+        System.out.println("Action working");
+    }
+
+    @FXML
+    void textAction(ActionEvent event) {
+        System.out.println("Action working");
+    }
+
 }
