@@ -5,7 +5,6 @@
  */
 package flashcard;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,9 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -26,44 +23,56 @@ import javafx.stage.Stage;
  *
  * @author parve
  */
-public class CreateCardController implements Initializable {
+public class PlayCardController implements Initializable {
 
+    @FXML
+    private AnchorPane scenePane;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private Button createButton;
+    @FXML
+    private Button homeButton;
+    
+    Stage stage;
     /**
      * Initializes the controller class.
      */
-    @FXML
-    private Button playButton;
-
-    @FXML
-    private Button homeButton;
-
-    @FXML
-    private Button exitButton;
-
-    private AnchorPane scenePane;
-    Stage stage;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
+    }    
 
     @FXML
-    void exitAction(ActionEvent event) {
-        //System.out.println("Hello");
-
+    private void exitAction(ActionEvent event) {
         try {
             stage = (Stage) exitButton.getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
-    void homeaction(ActionEvent event) throws IOException {
+    private void createAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("createCard.fxml"));
+            Parent root = loader.load();
 
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Create Flash Card");
+            stage.show();
+
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
+    }
+
+    @FXML
+    private void homeAction(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FlashCard.fxml"));
             Parent root = loader.load();
@@ -78,27 +87,6 @@ public class CreateCardController implements Initializable {
         } catch (Exception e) {
             //TODO: handle exception
         }
-
     }
-
-    @FXML
-    void playAction(ActionEvent event) {
-        System.out.println("Hello");
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("playCard.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Play Flash Card");
-            stage.show();
-
-        } catch (Exception e) {
-            
-        }
-    }
-
+    
 }
