@@ -57,6 +57,7 @@ public class CreateCardController implements Initializable {
 
     @FXML
     private TextField answerField;
+    
     @FXML
     private TextField questionField;
 

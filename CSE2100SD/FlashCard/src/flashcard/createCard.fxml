@@ -47,7 +47,7 @@
             <Font name="Marlett" size="22.0" />
          </font>
       </TextField>
-      <Button fx:id="nextButton" layoutX="133.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextAction" text="Next" />
-      <Button fx:id="saveButton" layoutX="435.0" layoutY="345.0" mnemonicParsing="false" onAction="#saveAction" text="Save" />
+      <Button fx:id="nextButton" layoutX="133.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextAction" text="Next" visible="false" />
+      <Button fx:id="saveButton" layoutX="435.0" layoutY="345.0" mnemonicParsing="false" onAction="#saveAction" text="Save" visible="false" />
    </children>
 </AnchorPane>

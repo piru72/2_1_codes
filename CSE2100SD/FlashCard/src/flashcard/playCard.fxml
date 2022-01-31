@@ -28,8 +28,12 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <TextField fx:id="textField" layoutX="118.0" layoutY="152.0" onAction="#textAction" prefHeight="64.0" prefWidth="363.0" />
-      <Button fx:id="nextButton" layoutX="336.0" layoutY="238.0" mnemonicParsing="false" onAction="#nextAction" text="NEXT" textFill="#22192c" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="336.0" AnchorPane.rightAnchor="197.0" AnchorPane.topAnchor="238.0">
+      <TextField fx:id="textField" layoutX="118.0" layoutY="152.0" onAction="#textAction" prefHeight="64.0" prefWidth="363.0">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </TextField>
+      <Button fx:id="nextButton" layoutX="414.0" layoutY="238.0" mnemonicParsing="false" onAction="#nextAction" text="NEXT" textFill="#22192c" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="414.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="238.0">
          <font>
             <Font size="18.0" />
          </font>

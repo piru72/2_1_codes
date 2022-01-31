@@ -5,6 +5,10 @@
  */
 package flashcard;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -81,7 +85,7 @@ public class PlayCardController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            //TODO: handle exception
+            e.printStackTrace();
         }
     }
 
@@ -99,7 +103,7 @@ public class PlayCardController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            //TODO: handle exception
+             e.printStackTrace();
         }
     }
 
@@ -114,9 +118,30 @@ public class PlayCardController implements Initializable {
         System.out.println("Action working");
     }
 
+    public int questionNo = 0;
+
     @FXML
-    void showAction(ActionEvent event) {
+    void showAction(ActionEvent event) throws IOException {
         System.out.println("Action working");
+
+        File file = new File("card_1.txt");
+
+        BufferedReader br
+                = new BufferedReader(new FileReader(file));
+
+        String st;
+       
+        int i = 0;
+        while ((st = br.readLine()) != null) {
+            if (questionNo == i) {
+                textField.setText(st);
+                questionNo++;
+                break;
+
+            }
+            i++;
+        }
+
     }
 
     @FXML
