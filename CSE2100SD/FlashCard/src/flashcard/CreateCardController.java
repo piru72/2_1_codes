@@ -5,6 +5,8 @@
  */
 package flashcard;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -116,28 +118,91 @@ public class CreateCardController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            
+
         }
     }
 
     @FXML
     void saveAction(ActionEvent event) {
-System.out.println("Action working");
+       // System.out.println("Action working");
+        
+
     }
 
     @FXML
     void nextAction(ActionEvent event) {
-System.out.println("Action working");
+        System.out.println("Action working");
     }
 
     @FXML
     void questionAction(ActionEvent event) {
-System.out.println("Action working");
+        
+
+
+        try {
+            File myObj = new File("card_1.txt");
+            if (myObj.createNewFile()) {
+              System.out.println("File created: " + myObj.getName());
+
+              FileWriter myWriter = new FileWriter("Card_1.txt");
+
+              String question = questionField.getText();
+                myWriter.append(question);
+                questionField.setText("");
+                myWriter.close();
+              
+        
+
+            } else {
+              System.out.println("File already exists.");
+              FileWriter myWriter = new FileWriter("Card_1.txt");
+
+              String question = questionField.getText();
+                myWriter.append(question);
+                questionField.setText("");
+                myWriter.close();
+
+
+            }
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
     }
 
     @FXML
     void answerAction(ActionEvent event) {
-System.out.println("Action working");
+        try {
+            File myObj = new File("card_2.txt");
+            if (myObj.createNewFile()) {
+              System.out.println("File created: " + myObj.getName());
+
+              FileWriter myWriter = new FileWriter("Card_2.txt");
+
+              String answer = answerField.getText();
+                myWriter.append(answer);
+                answerField.setText("");
+                myWriter.close();
+              
+        
+
+            } else {
+              System.out.println("File already exists.");
+              FileWriter myWriter = new FileWriter("Card_1.txt");
+
+              String answer = answerField.getText();
+                myWriter.append(answer);
+                answerField.setText("");
+                myWriter.close();
+
+
+            }
+          } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
     }
+    
+   
 
 }

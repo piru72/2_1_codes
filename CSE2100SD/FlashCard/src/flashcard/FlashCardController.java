@@ -60,7 +60,12 @@ public class FlashCardController implements Initializable {
 
     @FXML
     private void createCardAction(ActionEvent event) throws IOException {
-        System.out.println("Create Card Action");
+
+
+
+
+        try {
+            System.out.println("Create Card Action");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("createCard.fxml"));
         Parent root = loader.load();
 
@@ -72,6 +77,14 @@ public class FlashCardController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Create Flash Card");
         stage.show();
+            
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        
+
+
+
     }
 
     @FXML
@@ -92,7 +105,7 @@ public class FlashCardController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-            //TODO: handle exception
+            e.printStackTrace();
         }
 
     }

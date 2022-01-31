@@ -23,15 +23,13 @@ import javafx.stage.Stage;
  * @author parve
  */
 public class FlashCard extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-      
-        
-        
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FlashCard.fxml"));
         Parent root = loader.load();
-        
+
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("Flash Card");
@@ -44,7 +42,7 @@ public class FlashCard extends Application {
             exitAction(primaryStage);
                 }); */
     }
-    
+
     /*
     private void exitAction(Stage primaryStage) {
 
@@ -60,12 +58,12 @@ public class FlashCard extends Application {
         }
 
     }
-*/
+     */
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
