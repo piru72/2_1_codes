@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.FlashCardController">
    <children>
-      <ImageView fitHeight="427.0" fitWidth="922.0" layoutX="-256.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="434.0" fitWidth="868.0" layoutX="-34.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@back_1.jpg" />
          </image>
