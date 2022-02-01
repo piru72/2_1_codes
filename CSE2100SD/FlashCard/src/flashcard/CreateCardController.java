@@ -5,13 +5,18 @@
  */
 package flashcard;
 
+import java.awt.event.MouseEvent;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +30,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -66,7 +72,9 @@ public class CreateCardController implements Initializable {
 
     @FXML
     private Label answer;
-
+  
+    FileChooser obj2 = new FileChooser();   
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -126,7 +134,12 @@ public class CreateCardController implements Initializable {
     @FXML
     void saveAction(ActionEvent event) {
         // System.out.println("Action working");
-
+       obj2.setTitle("Saving option");
+        File file = obj2.showSaveDialog(stage);
+        if(file != null)
+        {
+            saveSystem(file,questionField.getText(),answerField.getText());
+        }
     }
 
     @FXML
@@ -192,5 +205,30 @@ public class CreateCardController implements Initializable {
             e.printStackTrace();
         }
     }
+    /*
+    @FXML
+    void saveFile(MouseEvent event) {
+      
+        obj2.setTitle("Saving option");
+        File file = obj2.showSaveDialog(stage);
+        if(file != null)
+        {
+            saveSystem(file,questionField.getText(),answerField.getText());
+        }
+    }*/
+  public void saveSystem(File file,String content1,String content2)
+  {
+      PrintWriter pw1;
+        try {
+        pw1 = new PrintWriter(file);
+        pw1.write(content1);
+        pw1.write("\n");
+        pw1.write(content2);
+        pw1.close();
 
+        } catch (FileNotFoundException ex) {
+          ex.printStackTrace();
+        }
+        }
+  
 }

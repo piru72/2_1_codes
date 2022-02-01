@@ -5,6 +5,7 @@
  */
 package flashcard;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -21,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 
@@ -53,7 +55,9 @@ public class PlayCardController implements Initializable {
     private Button showButton;
 
     Stage stage;
+     FileChooser obj1 = new FileChooser();   
 
+    
     /**
      * Initializes the controller class.
      */
@@ -112,20 +116,22 @@ public class PlayCardController implements Initializable {
     void fileAction(ActionEvent event) {
 
         System.out.println("File Action working");
+        obj1.setTitle("Open File Dialog");
+        obj1.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files","*.txt"));
+         File file= obj1.showOpenDialog(stage);
+         try{
+          if(file!= null)
+          {
+              //label2.setText(file.getAbsolutePath()+"selected");
+              Desktop desktop=Desktop.getDesktop();
+              desktop.open(file);
+              System.out.println(file.getAbsoluteFile());
+          }
+          }catch(Exception e)
+          {
+              System.out.println(e.getMessage());
+          }
         
-        JFileChooser fileChooser = new JFileChooser();
-         //File file = fileChooser.getSelectedFile();
-         
-         //File file = fileChooser.showOpenDialog(stage);
-        /*
-            int option = fileChooser.showSaveDialog(scenePane);
-            if(option == JFileChooser.APPROVE_OPTION){
-               File file = fileChooser.getSelectedFile();
-               textField.setText("File Saved as: " + file.getName());
-            }else{
-               textField.setText("Save command canceled");
-            }*/
-
     }
 
     @FXML
@@ -137,11 +143,12 @@ public class PlayCardController implements Initializable {
 
     @FXML
     void showAction(ActionEvent event) throws IOException {
-        //System.out.println("Action working");
+        System.out.println("Action working");
 
         File file = new File("card_1.txt");
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        BufferedReader br
+                = new BufferedReader(new FileReader(file));
 
         String st;
 
