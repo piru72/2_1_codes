@@ -55,9 +55,8 @@ public class PlayCardController implements Initializable {
     private Button showButton;
 
     Stage stage;
-     FileChooser obj1 = new FileChooser();   
+    FileChooser obj1 = new FileChooser();
 
-    
     /**
      * Initializes the controller class.
      */
@@ -117,21 +116,19 @@ public class PlayCardController implements Initializable {
 
         System.out.println("File Action working");
         obj1.setTitle("Open File Dialog");
-        obj1.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files","*.txt"));
-         File file= obj1.showOpenDialog(stage);
-         try{
-          if(file!= null)
-          {
-              //label2.setText(file.getAbsolutePath()+"selected");
-              Desktop desktop=Desktop.getDesktop();
-              desktop.open(file);
-              System.out.println(file.getAbsoluteFile());
-          }
-          }catch(Exception e)
-          {
-              System.out.println(e.getMessage());
-          }
-        
+        obj1.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files", "*.txt"));
+        File file = obj1.showOpenDialog(stage);
+        try {
+            if (file != null) {
+                //label2.setText(file.getAbsolutePath()+"selected");
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+                System.out.println(file.getAbsoluteFile());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @FXML
@@ -147,8 +144,7 @@ public class PlayCardController implements Initializable {
 
         File file = new File("card_1.txt");
 
-        BufferedReader br
-                = new BufferedReader(new FileReader(file));
+        BufferedReader br = new BufferedReader(new FileReader(file));
 
         String st;
 
@@ -158,7 +154,6 @@ public class PlayCardController implements Initializable {
                 textField.setText(st);
                 questionNo++;
                 break;
-
             }
             i++;
         }
