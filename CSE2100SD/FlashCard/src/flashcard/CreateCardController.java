@@ -8,7 +8,9 @@ package flashcard;
 import java.awt.event.MouseEvent;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -72,9 +74,10 @@ public class CreateCardController implements Initializable {
 
     @FXML
     private Label answer;
-  
-    FileChooser obj2 = new FileChooser();   
-    
+
+    FileChooser obj2 = new FileChooser();
+    String store = "";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -84,8 +87,15 @@ public class CreateCardController implements Initializable {
     void exitAction(ActionEvent event) {
 
         try {
+
+            FileWriter fw = new FileWriter("card_1.txt");
+            PrintWriter pw = new PrintWriter(fw);
+            pw.write("");
+            pw.flush();
+            pw.close();
             stage = (Stage) exitButton.getScene().getWindow();
             stage.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -127,18 +137,17 @@ public class CreateCardController implements Initializable {
             stage.show();
 
         } catch (Exception e) {
-             e.printStackTrace();
+
         }
     }
 
     @FXML
-    void saveAction(ActionEvent event) {
+    void saveAction(ActionEvent event) throws IOException {
         // System.out.println("Action working");
-       obj2.setTitle("Saving option");
+        obj2.setTitle("Saving option");
         File file = obj2.showSaveDialog(stage);
-        if(file != null)
-        {
-            saveSystem(file,questionField.getText(),answerField.getText());
+        if (file != null) {
+            saveSystem(file);
         }
     }
 
@@ -153,8 +162,8 @@ public class CreateCardController implements Initializable {
         try {
             File myObj = new File("card_1.txt");
             if (myObj.createNewFile()) {
-                //System.out.println("File created: " + myObj.getName());
-                Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
+
+                Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
 
                 String question = questionField.getText();
                 myWriter.append(question + "\n");
@@ -162,8 +171,8 @@ public class CreateCardController implements Initializable {
                 myWriter.close();
 
             } else {
-                //System.out.println("File already exists.");
-                Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
+
+                Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
 
                 String question = questionField.getText();
                 myWriter.append(question + "\n");
@@ -180,10 +189,10 @@ public class CreateCardController implements Initializable {
     @FXML
     void answerAction(ActionEvent event) {
         try {
-            File myObj = new File("card_2.txt");
+            File myObj = new File("card_1.txt");
             if (myObj.createNewFile()) {
-                //System.out.println("File created: " + myObj.getName());
-                Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
+
+                Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
 
                 String answer = answerField.getText();
                 myWriter.append(answer + "\n");
@@ -191,8 +200,8 @@ public class CreateCardController implements Initializable {
                 myWriter.close();
 
             } else {
-                //System.out.println("File already exists.");
-                Writer myWriter = new BufferedWriter(new FileWriter("Card_1.txt", true));
+
+                Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
 
                 String answer = answerField.getText();
                 myWriter.append(answer + "\n");
@@ -205,30 +214,32 @@ public class CreateCardController implements Initializable {
             e.printStackTrace();
         }
     }
-    /*
-    @FXML
-    void saveFile(MouseEvent event) {
-      
-        obj2.setTitle("Saving option");
-        File file = obj2.showSaveDialog(stage);
-        if(file != null)
-        {
-            saveSystem(file,questionField.getText(),answerField.getText());
-        }
-    }*/
-  public void saveSystem(File file,String content1,String content2)
-  {
-      PrintWriter pw1;
+
+    public void saveSystem(File file) throws IOException {
+        
+        FileInputStream instream = null;
+        FileOutputStream outstream = null;
         try {
-        pw1 = new PrintWriter(file);
-        pw1.write(content1);
-        pw1.write("\n");
-        pw1.write(content2);
-        pw1.close();
+
+            
+            store = file.getAbsolutePath();
+            File infile = new File("card_1.txt");
+            File outfile = new File(store);
+            instream = new FileInputStream(infile);
+            outstream = new FileOutputStream(outfile);
+            byte[] buffer = new byte[1024];
+            int len;
+
+            while ((len = instream.read(buffer)) > 0) {
+                outstream.write(buffer, 0, len);
+            }
+
+            instream.close();
+            outstream.close();
+           
 
         } catch (FileNotFoundException ex) {
-          ex.printStackTrace();
+            ex.printStackTrace();
         }
-        }
-  
+    }
 }

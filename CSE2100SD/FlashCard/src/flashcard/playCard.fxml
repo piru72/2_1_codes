@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.PlayCardController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.PlayCardController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,7 +30,7 @@
       </Button>
       <TextField fx:id="textField" layoutX="118.0" layoutY="152.0" onAction="#textAction" prefHeight="64.0" prefWidth="363.0">
          <font>
-            <Font name="System Bold" size="33.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </TextField>
       <Button fx:id="nextButton" layoutX="414.0" layoutY="238.0" mnemonicParsing="false" onAction="#nextAction" text="NEXT" textFill="#22192c" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="414.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="238.0">
