@@ -168,6 +168,8 @@ public class PlayCardController implements Initializable {
 
     }
     public int totalLine = 0;
+    int n_1 = 0;
+    int n_2 = 1;
 
     @FXML
     void nextAction(ActionEvent event) throws FileNotFoundException, IOException {
@@ -178,8 +180,17 @@ public class PlayCardController implements Initializable {
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
-        String st;
+        try {
+            String line = Files.readAllLines(Paths.get(s1)).get(n_1);
+            System.out.println(line);
+            textField.setText(line);
+            n_1 +=2;
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
+        String st;
+        /*
         int i = 0;
         while ((st = br.readLine()) != null) {
             if (questionNo == i) {
@@ -193,10 +204,11 @@ public class PlayCardController implements Initializable {
 
             }
             i++;
-        }
+        }*/
     }
 
     public int questionNo = 0;
+    
 
     @FXML
     void showAction(ActionEvent event) throws IOException {
@@ -207,9 +219,20 @@ public class PlayCardController implements Initializable {
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         String st;
-        if (questionNo%2 == 0)
-        {
-            questionNo -=1;
+
+        // The line number
+        try {
+            String line = Files.readAllLines(Paths.get(s1)).get(n_2);
+            System.out.println(line);
+            textField.setText(line);
+            n_2+=2;
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
+        /*
+        if (questionNo % 2 == 0) {
+            questionNo -= 1;
         }
 
         int i = 0;
@@ -223,8 +246,7 @@ public class PlayCardController implements Initializable {
 
             }
             i++;
-        }
-
+        }*/
     }
 
     @FXML

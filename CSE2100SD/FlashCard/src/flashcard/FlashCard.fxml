@@ -23,7 +23,7 @@
             <Font name="Arial Black" size="52.0" />
          </font>
       </Label>
-      <Button fx:id="createCardButton" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="167.0" layoutY="159.0" mnemonicParsing="false" onAction="#createCardAction" text="CREATE FLASH CARD" textAlignment="CENTER" textFill="#ff5148" textOverrun="WORD_ELLIPSIS">
+      <Button fx:id="createCardButton" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="167.0" layoutY="159.0" mnemonicParsing="false" onAction="#createCardAction" text="CREATE FLASH CARD" textAlignment="CENTER" textFill="#ff23bb" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font name="Marlett" size="26.0" />
          </font></Button>
@@ -31,7 +31,5 @@
          <font>
             <Font size="26.0" />
          </font></Button>
-      <Label layoutX="503.0" layoutY="337.0" text="Abdullah Yusha " textFill="WHITE" />
-      <Label layoutX="503.0" layoutY="354.0" text="200104113" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -52,8 +52,6 @@ public class FlashCard extends Application {
         alert.setContentText("Do you want to leave ?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
-           
-        
             primaryStage.close();
         }
 
