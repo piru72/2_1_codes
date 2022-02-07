@@ -47,8 +47,7 @@ public class PlayCardController implements Initializable {
     private AnchorPane scenePane;
     @FXML
     private Button exitButton;
-    @FXML
-    private Button createButton;
+
     @FXML
     private Button homeButton;
 
@@ -64,11 +63,12 @@ public class PlayCardController implements Initializable {
     @FXML
     private Button showButton;
 
-    Stage stage;
-    String s1;
+    private int totalLine = 0;
+    private int questionNo = 0;
 
-    int count = 1;
-    int otherCount = 1;
+    Stage stage;
+    String fileOpeningPath;
+
     FileChooser obj1 = new FileChooser();
 
     /**
@@ -82,31 +82,13 @@ public class PlayCardController implements Initializable {
     @FXML
     private void exitAction(ActionEvent event) {
         try {
-            FileWriter fw = new FileWriter("card_1.txt");
-            PrintWriter pw = new PrintWriter(fw);
-            pw.write("");
-            pw.flush();
-            pw.close();
+            FileWriter fileWriter = new FileWriter("card_1.txt");
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.write("");
+            printWriter.flush();
+            printWriter.close();
             stage = (Stage) exitButton.getScene().getWindow();
             stage.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void createAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("createCard.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Create Flash Card");
-            stage.show();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,10 +102,10 @@ public class PlayCardController implements Initializable {
 
             Scene scene = new Scene(root);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Flash Card");
-            stage.show();
+            Stage stageHome = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stageHome.setScene(scene);
+            stageHome.setTitle("Flash Card");
+            stageHome.show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,120 +115,93 @@ public class PlayCardController implements Initializable {
     @FXML
     void fileAction(ActionEvent event) {
 
-        System.out.println("File Action working");
-        obj1.setTitle("Open File Dialog");
-        obj1.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files", "*.txt"));
-        File file = obj1.showOpenDialog(stage);
         try {
-            if (file != null) {
+            System.out.println("File Action working");
+            obj1.setTitle("Open File Dialog");
+            obj1.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files", "*.txt"));
+            File file = obj1.showOpenDialog(stage);
+            if (file != null) {     
 
-                Desktop desktop = Desktop.getDesktop();
-
-                s1 = file.getAbsolutePath();
+                fileOpeningPath = file.getAbsolutePath();
 
                 System.out.println(file.getAbsoluteFile());
 
-                File file1 = new File(s1);
+                File file1 = new File(fileOpeningPath);
                 if (file1.exists()) {
-                    try {
-                        FileReader fr = new FileReader(file1);
+                    FileReader fr = new FileReader(file1);
                         LineNumberReader lr = new LineNumberReader(fr);
                         while (lr.readLine() != null) {
                             totalLine++;
                         }
                         System.out.println("Total number of line of a txt file = " + totalLine);
-                    } catch (FileNotFoundException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Open a valid file");
         }
 
     }
-    public int totalLine = 0;
-    int n_1 = 0;
-    int n_2 = 1;
 
     @FXML
-    void nextAction(ActionEvent event) throws FileNotFoundException, IOException {
-
-        System.out.println("Next Action working");
-
-        File file = new File(s1);
-
-        BufferedReader br = new BufferedReader(new FileReader(file));
+    void nextAction(ActionEvent event) throws IOException {
 
         try {
-            String line = Files.readAllLines(Paths.get(s1)).get(n_1);
-            System.out.println(line);
-            textField.setText(line);
-            n_1 +=2;
-        } catch (IOException e) {
-            System.out.println(e);
+            System.out.println("Next Action working");
+
+            File file = new File(fileOpeningPath);
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            String st;
+
+            int i = 0;
+            while ((st = br.readLine()) != null) {
+                if (questionNo == i) {
+                    textField.setText(st);
+                    if ((questionNo + 2) < totalLine) {
+                        questionNo += 2;
+                        break;
+                    }
+                }
+                i++;
+            }
+
+        } catch (Exception e) {
+            System.out.println("No file found");
         }
 
-        String st;
-        /*
-        int i = 0;
-        while ((st = br.readLine()) != null) {
-            if (questionNo == i) {
-                textField.setText(st);
-                if ((questionNo + 2) < totalLine) {
-                    questionNo += 2;
-                    break;
-                }
-
-                break;
-
-            }
-            i++;
-        }*/
     }
-
-    public int questionNo = 0;
-    
 
     @FXML
     void showAction(ActionEvent event) throws IOException {
-        System.out.println("Show Action working");
 
-        File file = new File(s1);
-
-        BufferedReader br = new BufferedReader(new FileReader(file));
-
-        String st;
-
-        // The line number
         try {
-            String line = Files.readAllLines(Paths.get(s1)).get(n_2);
-            System.out.println(line);
-            textField.setText(line);
-            n_2+=2;
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+            System.out.println("Show Action working");
 
-        /*
-        if (questionNo % 2 == 0) {
-            questionNo -= 1;
-        }
+            File file = new File(fileOpeningPath);
 
-        int i = 0;
-        System.out.println("Value os question " + questionNo);
-        while ((st = br.readLine()) != null) {
-            if (questionNo == i) {
-                textField.setText(st);
-                questionNo++;
+            BufferedReader br = new BufferedReader(new FileReader(file));
 
-                break;
+            String st;
 
+            if (questionNo % 2 == 0) {
+                questionNo -= 1;
             }
-            i++;
-        }*/
+
+            int i = 0;
+            System.out.println("Value os question " + questionNo);
+            while ((st = br.readLine()) != null) {
+                if (questionNo == i) {
+                    textField.setText(st);
+                    questionNo++;
+                    break;
+                }
+                i++;
+            }
+
+        } catch (Exception e) {
+            System.out.println("No file found");
+        }
     }
 
     @FXML

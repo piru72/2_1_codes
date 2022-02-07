@@ -52,7 +52,6 @@ public class FlashCardController implements Initializable {
         alert.setContentText("Do you want to leave ?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("Fuck java");
             stage = (Stage) scenePane.getScene().getWindow();
             stage.close();
         }
@@ -70,10 +69,10 @@ public class FlashCardController implements Initializable {
 
             CreateCardController welcome = loader.getController();
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Create Flash Card");
-            stage.show();
+            Stage stageCreate = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stageCreate.setScene(scene);
+            stageCreate.setTitle("Create Flash Card");
+            stageCreate.show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,10 +92,10 @@ public class FlashCardController implements Initializable {
 
             PlayCardController welcome = loader.getController();
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Play Flash Card");
-            stage.show();
+            Stage stagePlay = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stagePlay.setScene(scene);
+            stagePlay.setTitle("Play Flash Card");
+            stagePlay.show();
 
         } catch (Exception e) {
             e.printStackTrace();

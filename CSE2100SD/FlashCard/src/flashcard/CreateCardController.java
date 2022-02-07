@@ -46,9 +46,6 @@ public class CreateCardController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private Button playButton;
-
-    @FXML
     private Button homeButton;
 
     @FXML
@@ -75,7 +72,7 @@ public class CreateCardController implements Initializable {
     @FXML
     private Label answer;
 
-    FileChooser obj2 = new FileChooser();
+    FileChooser saveFIleChooser = new FileChooser();
     String store = "";
 
     @Override
@@ -88,17 +85,18 @@ public class CreateCardController implements Initializable {
 
         try {
 
-            FileWriter fw = new FileWriter("card_1.txt");
-            PrintWriter pw = new PrintWriter(fw);
-            pw.write("");
-            pw.flush();
-            pw.close();
+            FileWriter fileWriter = new FileWriter("card_1.txt");
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.write("");
+            printWriter.flush();
+            printWriter.close();
             stage = (Stage) exitButton.getScene().getWindow();
             stage.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    
 
     }
 
@@ -111,10 +109,10 @@ public class CreateCardController implements Initializable {
 
             Scene scene = new Scene(root);
 
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Flash Card");
-            stage.show();
+            Stage stageHome = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stageHome.setScene(scene);
+            stageHome.setTitle("Flash Card");
+            stageHome.show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,29 +121,10 @@ public class CreateCardController implements Initializable {
     }
 
     @FXML
-    void playAction(ActionEvent event) {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("playCard.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Play Flash Card");
-            stage.show();
-
-        } catch (Exception e) {
-
-        }
-    }
-
-    @FXML
     void saveAction(ActionEvent event) throws IOException {
-        // System.out.println("Action working");
-        obj2.setTitle("Saving option");
-        File file = obj2.showSaveDialog(stage);
+
+        saveFIleChooser.setTitle("Saving option");
+        File file = saveFIleChooser.showSaveDialog(stage);
         if (file != null) {
             saveSystem(file);
         }
@@ -153,29 +132,20 @@ public class CreateCardController implements Initializable {
 
     @FXML
     void nextAction(ActionEvent event) {
-        //System.out.println("Action working");
+        System.out.println("Next Action working");
     }
 
     @FXML
     void questionAction(ActionEvent event) {
 
         try {
-            File myObj = new File("card_1.txt");
-            if (myObj.createNewFile()) {
+            File tempFileSave = new File("card_1.txt");
+            if (tempFileSave.createNewFile()) {
 
                 Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
 
-                String question = questionField.getText();
-                myWriter.append(question + "\n");
-                questionField.setText("");
-                myWriter.close();
-
-            } else {
-
-                Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
-
-                String question = questionField.getText();
-                myWriter.append(question + "\n");
+                String questionString = questionField.getText();
+                myWriter.append(questionString + "\n");
                 questionField.setText("");
                 myWriter.close();
 
@@ -189,23 +159,14 @@ public class CreateCardController implements Initializable {
     @FXML
     void answerAction(ActionEvent event) {
         try {
-            File myObj = new File("card_1.txt");
-            if (myObj.createNewFile()) {
+            File tempFileSave = new File("card_1.txt");
+            if (tempFileSave.createNewFile()) {
 
                 Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
 
-                String answer = answerField.getText();
-                myWriter.append(answer + "\n");
+                String answerString = answerField.getText();
+                myWriter.append(answerString + "\n");
                 questionField.setText("");
-                myWriter.close();
-
-            } else {
-
-                Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
-
-                String answer = answerField.getText();
-                myWriter.append(answer + "\n");
-                answerField.setText("");
                 myWriter.close();
 
             }
@@ -216,30 +177,28 @@ public class CreateCardController implements Initializable {
     }
 
     public void saveSystem(File file) throws IOException {
-        
-        FileInputStream instream = null;
-        FileOutputStream outstream = null;
-        try {
 
-            
+        try {
+            FileInputStream inputStream = null;
+            FileOutputStream outputStream = null;
             store = file.getAbsolutePath();
-            File infile = new File("card_1.txt");
-            File outfile = new File(store);
-            instream = new FileInputStream(infile);
-            outstream = new FileOutputStream(outfile);
+            File inputFile = new File("card_1.txt");
+            File outputFile = new File(store);
+            inputStream = new FileInputStream(inputFile);
+            outputStream = new FileOutputStream(outputFile);
             byte[] buffer = new byte[1024];
             int len;
 
-            while ((len = instream.read(buffer)) > 0) {
-                outstream.write(buffer, 0, len);
+            while ((len = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, len);
             }
 
-            instream.close();
-            outstream.close();
-           
+            inputStream.close();
+            outputStream.close();
 
         } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+            System.out.println("Invalid file type");
         }
+       
     }
 }

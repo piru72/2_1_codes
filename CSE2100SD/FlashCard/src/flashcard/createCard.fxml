@@ -8,14 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.CreateCardController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.CreateCardController">
    <children>
       <ImageView fitHeight="412.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@back_1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="playButton" layoutX="274.0" layoutY="32.0" mnemonicParsing="false" onAction="#playAction" text="Play" textFill="WHITE" visible="false" />
       <Button fx:id="homeButton" layoutX="31.0" layoutY="25.0" mnemonicParsing="false" onAction="#homeaction" text="HOME" textFill="#22192ce0">
          <font>
             <Font size="18.0" />
@@ -46,7 +45,7 @@
             <Font name="Marlett" size="22.0" />
          </font>
       </TextField>
-      <Button fx:id="nextButton" layoutX="133.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextAction" text="Next" visible="false" />
+      <Button fx:id="nextButton" layoutX="133.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextAction" text="Next" />
       <Button fx:id="saveButton" layoutX="426.0" layoutY="342.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="28.0" prefWidth="64.0" text="Save">
          <font>
             <Font size="18.0" />
