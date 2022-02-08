@@ -1,17 +1,4 @@
 
-/* #titleLabel{
-    -fx-font-size: 50px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
-    -fx-padding: 10px;
-   
-} */
-/* .button{
-    -fx-background-color: #F11EAC;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;  
-} */
-
 .button {
     -fx-padding: 5 22 5 22;   
     -fx-border-color: #140035;

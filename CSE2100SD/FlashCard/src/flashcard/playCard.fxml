@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -27,20 +29,26 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <TextField fx:id="textField" layoutX="241.0" layoutY="172.0" onAction="#textAction" prefHeight="101.0" prefWidth="363.0">
+      <TextField fx:id="textField" layoutX="192.0" layoutY="173.0" onAction="#textAction" prefHeight="101.0" prefWidth="438.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="nextButton" layoutX="243.0" layoutY="287.0" mnemonicParsing="false" onAction="#nextAction" prefHeight="59.0" prefWidth="161.0" text="NEXT" textFill="#22192c" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="287.0">
+      <Button fx:id="nextButton" layoutX="192.0" layoutY="295.0" mnemonicParsing="false" onAction="#nextAction" prefHeight="59.0" prefWidth="161.0" text="NEXT" textFill="#22192c" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="295.0">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="showButton" layoutX="241.0" layoutY="102.0" mnemonicParsing="false" onAction="#showAction" style="-fx-border-radius: 100px;" text="SHOW ANSWER" textFill="#22192c">
+      <Button fx:id="showButton" layoutX="192.0" layoutY="102.0" mnemonicParsing="false" onAction="#showAction" style="-fx-border-radius: 100px;" text="SHOW ANSWER" textFill="#22192c">
          <font>
             <Font name="Marlett" size="18.0" />
          </font>
       </Button>
+      <SplitMenuButton layoutX="503.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #F11EAC; -fx-border-color: #F11EAC;" text="Choose File">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#menuItem1Action" text="Course Info" />
+          <MenuItem mnemonicParsing="false" onAction="#menuItem2Action" text="GIT Info" />
+        </items>
+      </SplitMenuButton>
    </children>
 </AnchorPane>

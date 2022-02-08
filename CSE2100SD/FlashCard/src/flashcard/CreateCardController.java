@@ -138,8 +138,16 @@ public class CreateCardController implements Initializable {
     }
 
     @FXML
-    void nextAction(ActionEvent event) {
+    void nextAction(ActionEvent event) throws IOException {
         System.out.println("Next Action working");
+
+        FileWriter fileWriter = new FileWriter("card_1.txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.write("");
+        printWriter.flush();
+        printWriter.close();
+        questionField.setText("");
+        answerField.setText("");
     }
 
     @FXML

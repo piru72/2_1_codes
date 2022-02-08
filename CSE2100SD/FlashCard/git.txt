@@ -1,0 +1,8 @@
+git command to download repository?
+git clone
+command to stage files for a commit?
+git add
+shortcut to staging all the changes ?
+git add .
+supply a commit message to a commit?
+git commit -m "I'm coding"

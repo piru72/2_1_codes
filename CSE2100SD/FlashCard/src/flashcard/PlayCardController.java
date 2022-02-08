@@ -70,6 +70,7 @@ public class PlayCardController implements Initializable {
 
     Stage stage;
     String fileOpeningPath;
+    int n_1 = 0;
 
     FileChooser obj1 = new FileChooser();
 
@@ -89,6 +90,7 @@ public class PlayCardController implements Initializable {
             printWriter.write("");
             printWriter.flush();
             printWriter.close();
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Exit");
             alert.setHeaderText("You are about to exit!");
@@ -126,8 +128,7 @@ public class PlayCardController implements Initializable {
     void fileAction(ActionEvent event) {
 
         try {
-            
-            totalLine =0;
+
             System.out.println("File Action working");
             obj1.setTitle("Open File Dialog");
             obj1.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files", "*.txt"));
@@ -135,18 +136,8 @@ public class PlayCardController implements Initializable {
             if (file != null) {
 
                 fileOpeningPath = file.getAbsolutePath();
+                 fileOpenEssentials();
 
-                System.out.println(file.getAbsoluteFile());
-
-                File file1 = new File(fileOpeningPath);
-                if (file1.exists()) {
-                    FileReader fr = new FileReader(file1);
-                    LineNumberReader lr = new LineNumberReader(fr);
-                    while (lr.readLine() != null) {
-                        totalLine++;
-                    }
-                    System.out.println("Total number of line of a txt file = " + totalLine);
-                }
             }
         } catch (Exception e) {
             System.out.println("Open a valid file");
@@ -158,25 +149,15 @@ public class PlayCardController implements Initializable {
     void nextAction(ActionEvent event) throws IOException {
 
         try {
-            System.out.println("Next Action working");
-
-            File file = new File(fileOpeningPath);
-
-            BufferedReader br = new BufferedReader(new FileReader(file));
-
-            String st;
-
-            int i = 0;
-            while ((st = br.readLine()) != null) {
-                if (questionNo == i) {
-                    textField.setText(st);
-                    if ((questionNo + 2) < totalLine) {
-                        questionNo += 2;
-                        break;
-                    }
-                }
-                i++;
+            // System.out.println("v");
+            if (n_1 >= totalLine) {
+                textField.setDisable(true);
             }
+            String line = Files.readAllLines(Paths.get(fileOpeningPath)).get(n_1);
+            System.out.println(n_1);
+            textField.setText(line);
+
+            n_1 += 2;
 
         } catch (Exception e) {
             System.out.println("No file found");
@@ -190,26 +171,13 @@ public class PlayCardController implements Initializable {
         try {
             System.out.println("Show Action working");
 
-            File file = new File(fileOpeningPath);
-
-            BufferedReader br = new BufferedReader(new FileReader(file));
-
-            String st;
-
-            if (questionNo % 2 == 0) {
-                questionNo -= 1;
+            if (n_1 + 1 >= totalLine) {
+                textField.setDisable(true);
             }
 
-            int i = 0;
-            System.out.println("Value os question " + questionNo);
-            while ((st = br.readLine()) != null) {
-                if (questionNo == i) {
-                    textField.setText(st);
-                    questionNo++;
-                    break;
-                }
-                i++;
-            }
+            String line = Files.readAllLines(Paths.get(fileOpeningPath)).get(n_1 - 1);
+            System.out.println(line);
+            textField.setText(line);
 
         } catch (Exception e) {
             System.out.println("No file found");
@@ -219,6 +187,43 @@ public class PlayCardController implements Initializable {
     @FXML
     void textAction(ActionEvent event) {
         System.out.println("Action working");
+    }
+
+    @FXML
+    void menuItem1Action(ActionEvent event) throws FileNotFoundException, IOException {
+        fileOpeningPath = "courseInfo.txt";
+        fileOpenEssentials();
+
+    }
+
+    @FXML
+    void menuItem2Action(ActionEvent event) throws FileNotFoundException, IOException {
+        fileOpeningPath = "git.txt";
+        fileOpenEssentials();
+    }
+
+    public void fileOpenEssentials() throws FileNotFoundException, IOException {
+        //System.out.println("Initializer working");
+
+        try {
+            textField.setDisable(false);
+            totalLine = 0;
+            n_1 = 0;
+            textField.setText("");
+            File file1 = new File(fileOpeningPath);
+            if (file1.exists()) {
+                FileReader fr = new FileReader(file1);
+                LineNumberReader lr = new LineNumberReader(fr);
+                while (lr.readLine() != null) {
+                    totalLine++;
+                }
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error Occured");
+        }
+       
+
     }
 
 }

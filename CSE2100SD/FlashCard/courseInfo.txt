@@ -1,0 +1,10 @@
+What is the name of the course ?
+Software Development 2
+What is the course NO ?
+CSE2100
+Who is taking the course ?
+Mr.  Reasad zaman Chowdhury
+How many credit hours is this course?
+.75
+How many classes will be taken on this course ?
+7
