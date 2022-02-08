@@ -31,23 +31,24 @@ public class FlashCard extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
+       
 
         primaryStage.setTitle("Flash Card");
         primaryStage.setScene(scene);
         primaryStage.show();
-        /*
+        
          primaryStage.setOnCloseRequest(event -> {
             event.consume();
             
             exitAction(primaryStage);
-                }); */
+                }); 
     }
 
-    /*
+    
     private void exitAction(Stage primaryStage) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
+        alert.setTitle("Exit");
         alert.setHeaderText("You are about to exit!");
         alert.setContentText("Do you want to leave ?");
 
@@ -56,7 +57,7 @@ public class FlashCard extends Application {
         }
 
     }
-     */
+    
     /**
      * @param args the command line arguments
      */

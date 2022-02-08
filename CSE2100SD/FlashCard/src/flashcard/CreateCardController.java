@@ -90,13 +90,20 @@ public class CreateCardController implements Initializable {
             printWriter.write("");
             printWriter.flush();
             printWriter.close();
-            stage = (Stage) exitButton.getScene().getWindow();
-            stage.close();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Exit");
+            alert.setHeaderText("You are about to exit!");
+            alert.setContentText("Do you want to leave ?");
+
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                stage = (Stage) scenePane.getScene().getWindow();
+                stage.close();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
 
     }
 
@@ -140,6 +147,7 @@ public class CreateCardController implements Initializable {
 
         try {
             File tempFileSave = new File("card_1.txt");
+
             if (tempFileSave.createNewFile()) {
 
                 Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
@@ -148,6 +156,19 @@ public class CreateCardController implements Initializable {
                 myWriter.append(questionString + "\n");
                 questionField.setText("");
                 myWriter.close();
+                // System.out.println("Question action working");
+
+                questionField.setVisible(false);
+                answerField.setVisible(true);
+            } else {
+                Writer myWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
+
+                String questionString = questionField.getText();
+                myWriter.append(questionString + "\n");
+                questionField.setText("");
+                myWriter.close();
+                questionField.setVisible(false);
+                answerField.setVisible(true);
 
             }
         } catch (IOException e) {
@@ -168,7 +189,19 @@ public class CreateCardController implements Initializable {
                 myWriter.append(answerString + "\n");
                 questionField.setText("");
                 myWriter.close();
+                questionField.setVisible(true);
+                answerField.setVisible(false);
 
+            } else {
+
+                Writer answerWriter = new BufferedWriter(new FileWriter("card_1.txt", true));
+
+                String answerString = answerField.getText();
+                answerWriter.append(answerString + "\n");
+                questionField.setText("");
+                answerWriter.close();
+                questionField.setVisible(true);
+                answerField.setVisible(false);
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -176,9 +209,16 @@ public class CreateCardController implements Initializable {
         }
     }
 
+    public void visibilitySetter() {
+        questionField.setVisible(true);
+        answerField.setVisible(false);
+        //System.out.println("Hello");
+    }
+
     public void saveSystem(File file) throws IOException {
 
         try {
+
             FileInputStream inputStream = null;
             FileOutputStream outputStream = null;
             store = file.getAbsolutePath();
@@ -196,9 +236,15 @@ public class CreateCardController implements Initializable {
             inputStream.close();
             outputStream.close();
 
+            FileWriter fileWriter = new FileWriter("card_1.txt");
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.write("");
+            printWriter.flush();
+            printWriter.close();
+
         } catch (FileNotFoundException ex) {
             System.out.println("Invalid file type");
         }
-       
+
     }
 }

@@ -8,45 +8,45 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.CreateCardController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" stylesheets="@createcard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.CreateCardController">
    <children>
-      <ImageView fitHeight="412.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="450.0" fitWidth="651.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@back_1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="homeButton" layoutX="31.0" layoutY="25.0" mnemonicParsing="false" onAction="#homeaction" text="HOME" textFill="#22192ce0">
+      <Button fx:id="homeButton" layoutX="14.0" layoutY="132.0" mnemonicParsing="false" onAction="#homeaction" text="HOME" textFill="#22192ce0">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="exitButton" layoutX="528.0" layoutY="25.0" mnemonicParsing="false" onAction="#exitAction" text="EXIT" textFill="#22192c">
+      <Button fx:id="exitButton" layoutX="14.0" layoutY="205.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="53.0" prefWidth="135.0" text="EXIT" textFill="#22192c">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="question" layoutX="31.0" layoutY="146.0" text="Question" textFill="WHITE">
+      <Label fx:id="question" layoutX="245.0" layoutY="42.0" text="Question" textFill="WHITE">
          <font>
             <Font name="Marlett" size="26.0" />
          </font>
       </Label>
-      <Label fx:id="answer" layoutX="29.0" layoutY="252.0" text="ANSWER" textFill="WHITE">
+      <Label fx:id="answer" layoutX="244.0" layoutY="164.0" text="ANSWER" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="questionField" layoutX="141.0" layoutY="120.0" onAction="#questionAction" prefHeight="80.0" prefWidth="343.0" promptText="Add question here">
+      <TextField fx:id="questionField" layoutX="244.0" layoutY="78.0" onAction="#questionAction" prefHeight="80.0" prefWidth="343.0" promptText="Add question here">
          <font>
             <Font name="Marlett" size="22.0" />
          </font>
       </TextField>
-      <TextField fx:id="answerField" layoutX="141.0" layoutY="231.0" onAction="#answerAction" prefHeight="80.0" prefWidth="343.0" promptText="Add answer here">
+      <TextField fx:id="answerField" layoutX="244.0" layoutY="204.0" onAction="#answerAction" prefHeight="80.0" prefWidth="343.0" promptText="Add answer here">
          <font>
             <Font name="Marlett" size="22.0" />
          </font>
       </TextField>
-      <Button fx:id="nextButton" layoutX="133.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextAction" text="Next" />
-      <Button fx:id="saveButton" layoutX="426.0" layoutY="342.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="28.0" prefWidth="64.0" text="Save">
+      <Button fx:id="nextButton" layoutX="239.0" layoutY="300.0" mnemonicParsing="false" onAction="#nextAction" text="Next" />
+      <Button fx:id="saveButton" layoutX="472.0" layoutY="16.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="53.0" prefWidth="115.0" text="Save">
          <font>
             <Font size="18.0" />
          </font></Button>

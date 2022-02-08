@@ -7,37 +7,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.PlayCardController">
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" stylesheets="@playcard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="flashcard.PlayCardController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="435.0" fitWidth="647.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@back_1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="exitButton" layoutX="528.0" layoutY="23.0" mnemonicParsing="false" onAction="#exitAction" text="EXIT" textFill="#22192c">
+      <Button fx:id="exitButton" layoutX="12.0" layoutY="271.0" mnemonicParsing="false" onAction="#exitAction" prefHeight="53.0" prefWidth="130.0" text="EXIT" textFill="#22192c">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="homeButton" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#homeAction" text="Home" textFill="#22192c">
+      <Button fx:id="homeButton" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#homeAction" text="Home" textFill="#22192c">
          <font>
             <Font name="Marlett" size="18.0" />
          </font></Button>
-      <Button fx:id="fileButton" layoutX="264.0" layoutY="76.0" mnemonicParsing="false" onAction="#fileAction" text="FILE">
+      <Button fx:id="fileButton" layoutX="14.0" layoutY="204.0" mnemonicParsing="false" onAction="#fileAction" prefHeight="53.0" prefWidth="130.0" text="FILE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Button>
-      <TextField fx:id="textField" layoutX="118.0" layoutY="152.0" onAction="#textAction" prefHeight="64.0" prefWidth="363.0">
+      <TextField fx:id="textField" layoutX="241.0" layoutY="172.0" onAction="#textAction" prefHeight="101.0" prefWidth="363.0">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="nextButton" layoutX="414.0" layoutY="238.0" mnemonicParsing="false" onAction="#nextAction" text="NEXT" textFill="#22192c" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="414.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="238.0">
+      <Button fx:id="nextButton" layoutX="243.0" layoutY="287.0" mnemonicParsing="false" onAction="#nextAction" prefHeight="59.0" prefWidth="161.0" text="NEXT" textFill="#22192c" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="243.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="287.0">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="showButton" layoutX="112.0" layoutY="242.0" mnemonicParsing="false" onAction="#showAction" style="-fx-border-radius: 100px;" text="SHOW ANSWER" textFill="#22192c">
+      <Button fx:id="showButton" layoutX="241.0" layoutY="102.0" mnemonicParsing="false" onAction="#showAction" style="-fx-border-radius: 100px;" text="SHOW ANSWER" textFill="#22192c">
          <font>
             <Font name="Marlett" size="18.0" />
          </font>

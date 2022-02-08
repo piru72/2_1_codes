@@ -29,7 +29,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -87,8 +89,16 @@ public class PlayCardController implements Initializable {
             printWriter.write("");
             printWriter.flush();
             printWriter.close();
-            stage = (Stage) exitButton.getScene().getWindow();
-            stage.close();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Exit");
+            alert.setHeaderText("You are about to exit!");
+            alert.setContentText("Do you want to leave ?");
+
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                stage = (Stage) scenePane.getScene().getWindow();
+                stage.close();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -116,11 +126,13 @@ public class PlayCardController implements Initializable {
     void fileAction(ActionEvent event) {
 
         try {
+            
+            totalLine =0;
             System.out.println("File Action working");
             obj1.setTitle("Open File Dialog");
             obj1.getExtensionFilters().add(new FileChooser.ExtensionFilter("txt files", "*.txt"));
             File file = obj1.showOpenDialog(stage);
-            if (file != null) {     
+            if (file != null) {
 
                 fileOpeningPath = file.getAbsolutePath();
 
@@ -129,11 +141,11 @@ public class PlayCardController implements Initializable {
                 File file1 = new File(fileOpeningPath);
                 if (file1.exists()) {
                     FileReader fr = new FileReader(file1);
-                        LineNumberReader lr = new LineNumberReader(fr);
-                        while (lr.readLine() != null) {
-                            totalLine++;
-                        }
-                        System.out.println("Total number of line of a txt file = " + totalLine);
+                    LineNumberReader lr = new LineNumberReader(fr);
+                    while (lr.readLine() != null) {
+                        totalLine++;
+                    }
+                    System.out.println("Total number of line of a txt file = " + totalLine);
                 }
             }
         } catch (Exception e) {
