@@ -1,8 +1,4 @@
-//! Task 3. Write a code to convert an Infix Expression to Prefix Expression.
 
-// For example, 
-// Infix Expression: 1+2
-// Converted Postfix Expression: +12
 
 #include <bits/stdc++.h>
 #include <stdio.h>
@@ -31,8 +27,6 @@ int main()
 {
 
     infix = "1+2";
-
-    cout << "Infix expression :  " <<infix <<endl;
     prefix_converter();
     return 0;
 }
@@ -118,7 +112,7 @@ void print()
     int i = 0;
     string temp;
     int size = 0;
-    cout << "Converted prefix Expression: ";
+    cout << "Equivalent Expression in postfix form : " + postfix << endl;
     while (postfix[i])
     {
         i++;

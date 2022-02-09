@@ -1,12 +1,9 @@
 //! Task 1. Write a code to convert an Infix Expression to Postfix Expression. Evaluate both the expression to check.
-// For example, 
+// For example,
 // Infix Expression: 1+2
 // Infix Evaluation: 3
-// Converted Postfix Expression: 12+ 
+// Converted Postfix Expression: 12+
 // Converted Postfix Evaluation: 3
-
-
-
 
 
 #include <bits/stdc++.h>
@@ -18,7 +15,7 @@ using namespace std;
 #define MAX 100
 int stack1[MAX];
 string infix;
-string postfix;
+char postfix[MAX];
 
 int top=-1;
 
@@ -26,19 +23,26 @@ void push(int);
 int pop();
 int isEmpty();
 void toPostfix();
-int isSpace(char);
+int space(char);
 void print();
 int precedence(char);
+int postfix_eval();
 
 int main (void)
 {
-    
-
-    infix = "1+2";
-    cout << "Infix expression :  " <<infix <<endl;
+    int result;
+    cout << "Enter Expression in infix form : " << endl;
+    cin >> infix;
 
     toPostfix();
+
+
     print();
+    // cout <<"Result in postfix evaluation is : " << endl;
+    // result=postfix_eval();
+    // printf("%d",result);
+
+
     return 0;
 
 }
@@ -51,7 +55,8 @@ void toPostfix()
     {
         symbol=infix[i];
 
-        if(!isSpace(symbol))
+
+        if(!space(symbol))
         {
             switch(symbol)
             {
@@ -75,9 +80,12 @@ void toPostfix()
                 }
                 push(symbol);
                 break;
+
             default :
                 postfix[j++]=symbol;
             }
+
+
         }
     }
 
@@ -85,7 +93,7 @@ void toPostfix()
         postfix[j++]=pop();
     postfix[j]='\0';
 }
-int isSpace (char c)
+int space (char c)
 {
     if (c== ' ' || c=='\t')
     {
@@ -109,21 +117,23 @@ int precedence(char symbol)
     default :
         return 0;
     }
+
 }
 
 void print()
 {
     int i=0;
-    cout << "Converted Postfix Expression ";
+    cout << "Equivalent Expression in postfix form : " << endl;
+
         while(postfix[i])
-            cout <<postfix[i++];   
+            cout <<postfix[i++];  
 }
 
 void push(int val)
 {
     if(top==MAX -  1)
     {
-        cout << "Stack Overflow \n";
+        printf("Stack Overflow \n");
         return;
     }
     top++;
@@ -144,6 +154,49 @@ int pop()
 }
 int isEmpty()
 {
-    if(top==-1)     return 1;
-    else            return 0;
+    if(top==-1)
+    {
+        return 1;
+    }
+    else
+        return 0;
 }
+int postfix_eval()
+{
+    int i;
+    int a,b;
+    for (i=0; i<strlen(postfix); i++)
+    {
+
+
+        if(postfix[i]>='0' && postfix[i]<='9')
+        {
+            push(postfix[i]-'0');
+        }
+        else
+        {
+            a=pop();
+            b=pop();
+            switch(postfix[i])
+            {
+            case '+':
+                push(b+a);
+                break;
+            case '-':
+                push(b-a);
+                break;
+            case '*':
+                push(b*a);
+                break;
+            case '/':
+                push(b/a);
+                break;
+            case '^':
+                push(pow (b,a));
+                break;
+            }
+        }
+    }
+    return pop();
+}
+

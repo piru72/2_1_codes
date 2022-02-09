@@ -16,6 +16,8 @@ using namespace std;
 int stack1[MAX];
 char infix[MAX];
 char postfix[MAX];
+
+
 int top=-1;
 
 void push(int);
