@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int graph[200][200];
+int graph[5][5];
 int status[200];
 
 struct node
 {
     int val;
-    node* next;
+    node *next;
 
     node(int x)
     {
@@ -15,88 +15,87 @@ struct node
         next = NULL;
     }
 };
-node* head;
+node *head;
 
 void enqueue(int node)
 {
-
 }
 int dequeue()
 {
-
 }
 
 bool isEmpty()
 {
-
 }
 
-void inputGraph(int N, int E)
+void inputGraph(int number_of_node, int number_of_edge)
 {
+    int source, destination, weight;
+    weight = 1; // weight =1 as we are considering unweighted graph
 
-
+    cout << "Enter the edges and their weight" << endl;
+    for (int i = 1; i <= number_of_edge; i++)
+    {
+        cin >> source >> destination; // no need to scan weight as it is unweighted graph
+        graph[source][destination] = weight;
+        // graph[destination][source] = weight; // if directed graph there will be no need to add this line because edges will traverse in both direction
+    }
 }
 void printAM(int N)
 {
-    for(int i=1;i<=N;i++)
+    for (int i = 1; i <= N; i++)
     {
-        for(int j=1;j<=N;j++)
+        for (int j = 1; j <= N; j++)
         {
-            printf(" %d ",graph[i][j]);
+            cout << graph[i][j];
         }
-        printf("\n");
+        cout << endl;
     }
 }
 
 void initStatus(int N)
 {
-
 }
 
 void addNeighbors(int nodeN, int n)
 {
-
 }
 
 void bfs(int source, int n)
 {
-    //step 1
+    // step 1
     initStatus(n);
 
-    //step 2
+    // step 2
     enqueue(source);
     status[source] = 2;
 
-    //step 3
-    while(!isEmpty())
+    // step 3
+    while (!isEmpty())
     {
-        //step 4
-        int N;  //do necessary things
+        // step 4
+        int N; // do necessary things
 
-
-        //step 5
+        // step 5
         addNeighbors(N, n);
-
     }
-
-
 }
 
 int main()
 {
-    int n,e, source;
-    printf("Enter no of Node: ");
-    scanf("%d",&n);
+    int number_of_node, number_of_edge, source_node;
 
-    printf("Enter no of Edge: ");
-    scanf("%d", &e);
+    cout << "Enter no of Node: " << endl;
+    cin >> number_of_node;
 
-    printf("Enter Source: ");
-    scanf("%d", &source);
-    //inputGraph(n,e);
-    //printAM(n);
-    //bfs(source,n);
+    cout << "Enter no of Edge: " << endl;
+    cin >> number_of_edge;
+
+    cout << "Enter Source: " << endl;
+    cin >> source_node;
+    inputGraph(number_of_node, number_of_edge); // takes graph input
+    printAM(number_of_node);                    // prints adjecency matrix
+    // bfs(source,n);
 
     return 0;
 }
-
