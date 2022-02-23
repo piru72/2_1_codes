@@ -25,7 +25,6 @@ void ENQUEUE(int val)
     node* n = new node (val);
     n->next = head;
     head = n;
- 
 }
 
 
