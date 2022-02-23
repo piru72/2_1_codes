@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 
-int graph[5][5];
-int status[5];
+int graph[100][100];
+int status[100];
 
 struct node
 {
@@ -32,17 +32,16 @@ void enqueue(int val)
 {
     node *n = new node(val);
 
-    if (isEmpty()) // if the node is empty
+    if (isEmpty())
     {
-        // n->next = head;
+
         head = n;
-        // cout << "Step 2 done" << endl;
     }
     else
     {
-        // cout << "Step 3 done" << endl;
+
         node *temp = head;
-        // finding the address of the last node which is saved in the second last node and adding the new node
+
         while (temp->next != NULL)
         {
             temp = temp->next;
@@ -57,7 +56,7 @@ int dequeue()
     node *newNode = head;
     if (head == NULL)
     {
-        // printf("Empty Queue\n");
+
         return store;
     }
     else
@@ -73,14 +72,13 @@ int dequeue()
 void inputGraph(int number_of_node, int number_of_edge)
 {
     int source, destination, weight;
-    weight = 1; // weight =1 as we are considering unweighted graph
+    weight = 1;
 
     cout << "Enter the edges " << endl;
     for (int i = 1; i <= number_of_edge; i++)
     {
-        cin >> source >> destination; // no need to scan weight as it is unweighted graph
+        cin >> source >> destination;
         graph[source][destination] = weight;
-        // graph[destination][source] = weight; // if directed graph there will be no need to add this line because edges will traverse in both direction
     }
 }
 void printAM(int N)
@@ -110,38 +108,30 @@ void addNeighbors(int nodeN, int n)
     {
         if (graph[nodeN][i] == 1 && status[i] == 1)
         {
+            //cout << "value of I " << i << endl;
             enqueue(i);
             status[i] = 2;
         }
-        
     }
 }
 
 void bfs(int source_node, int number_of_node)
 {
-
-    // cout << "BFS function"<< source<<n << endl;
-    //! step 1
+    int dequeued_value;
     initStatus(number_of_node);
-    // cout << "Step 1 done" << endl;
-
-    //! step 2
     head = NULL;
-    //cout << "Value of is empty" << isEmpty() << endl;
-    enqueue(source_node);
-    status[source_node] = 2;
 
-    // step 3
+    enqueue(source_node);
+    
+    status[source_node] = 2;
+    
     while (!isEmpty())
     {
-        // step 4
-        int N; // do necessary things
-        N = dequeue();
-        cout << N << ">";
-        status[N] = 3;
+        dequeued_value = dequeue();
+        cout << dequeued_value << ">";
+        status[dequeued_value] = 3;
 
-        // step 5
-        addNeighbors(N, number_of_node);
+        addNeighbors(dequeued_value, number_of_node);
     }
 }
 
@@ -159,23 +149,9 @@ int main()
     cout << "Enter Source: " << endl;
     cin >> source_node;
 
-    inputGraph(number_of_node, number_of_edge); // takes graph input
-    //  printAM(number_of_node);                    // prints adjecency matrix
+    inputGraph(number_of_node, number_of_edge);
+    printAM(number_of_node);
     bfs(source_node, number_of_node);
 
     return 0;
 }
-
-/*
-1 4
-1 5
-4 2
-5 2
-2 3
-
-*/
-
-// status update
-//  1 - unvisited
-//  2 - visiting
-//  3 - visited and in queue
