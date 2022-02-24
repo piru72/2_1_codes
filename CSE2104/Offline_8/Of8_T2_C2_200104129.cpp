@@ -1,5 +1,5 @@
 
-//Task 1. Write a code to implement the BFS algorithm
+//Task 1. Write a code to implement the DFS algorithm
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
@@ -21,7 +21,7 @@ struct node
 node *head;
 bool isEmpty()
 {
-    if (head == NULL) // checking if the queue is empty or not
+    if (head == NULL) // checking if the stack is empty or not
     {
         return true;
     }
@@ -30,41 +30,35 @@ bool isEmpty()
         return false;
     }
 }
-void enqueue(int val)
+void push(int val)
 {
     node *n = new node(val);
 
-    if (isEmpty()) // if the queue is empty then the new node is the head
+    if (isEmpty()) // if the stack is empty then the new node is the head
     {
 
         head = n;
     }
     else
     {
-
-        node *temp = head;
-
-        while (temp->next != NULL) // if not empty inserting in last node
-        {
-            temp = temp->next;
-        }
-        temp->next = n;
+        n->next = head;
+        head = n;
     }
 }
 
-int dequeue()
+int pop()
 {
     int store = 0;
-    node *newNode = head;
+    node *temp = head;
     if (isEmpty())
     {
         return store;
     }
     else
     {
-        store = newNode->val; // storing the value of the first node
-        head = newNode->next;
-        delete newNode;
+        store = temp->val; // storing the value of the first node
+        head = temp->next;
+        delete temp;
         return store;
     }
 }
@@ -104,34 +98,34 @@ void initStatus(int number_of_node)
 
 void addNeighbors(int nodeN, int n)
 {
-    for (int i = 1; i <= n; i++)
+    for (int i = n; i >= 1; i--)
     {
-        if (graph[nodeN][i] == 1 && status[i] == 1) // finding edge which wasnt visited before and adding it to queue
+        if (graph[nodeN][i] == 1 && status[i] == 1) // finding edge which wasn't visited before and adding it to stack
         {
-            enqueue(i);
+            push(i);
             status[i] = 2; // setting the status to 2 as working on it
         }
     }
 }
 
-void bfs(int source_node, int number_of_node)
+void dfs(int source_node, int number_of_node)
 {
-    int dequeued_value;
+    int popped_value;
     initStatus(number_of_node); // initialising correct status 1 as all is unvisited currently
     head = NULL;
 
-    enqueue(source_node); // enqueueing the source node
+    push(source_node); // pushing the source node
 
     status[source_node] = 2; // the source node we are working so status is 2
 
-    // until the queue is empty
+    // until the stack is empty
     while (!isEmpty())
     {
-        dequeued_value = dequeue(); // getting the value of the dequeued node and printing it
-        cout << dequeued_value << "->";
-        status[dequeued_value] = 3; // setting the status of the dequeued node to 3 as visited and dequeued
+        popped_value = pop(); // getting the value of the popped node and printing it
+        cout << popped_value << "->";
+        status[popped_value] = 3; // setting the status of the popped node to 3 as visited and popped
 
-        addNeighbors(dequeued_value, number_of_node); // adding neighbors of source node to the queue
+        addNeighbors(popped_value, number_of_node); // adding neighbors of source node to the stack
     }
 }
 
@@ -156,7 +150,7 @@ int main()
     cout << "The Adjecency Matrix is: " << endl;
     printAM(number_of_node);
     // calling the bfs function
-    bfs(source_node, number_of_node);
+    dfs(source_node, number_of_node);
 
     return 0;
 }

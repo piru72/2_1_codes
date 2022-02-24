@@ -54,8 +54,5 @@ public class TestController implements Initializable {
         }
 
     }
-    
-    @FXML
-    private void exitAction(ActionEvent event)
 
 }

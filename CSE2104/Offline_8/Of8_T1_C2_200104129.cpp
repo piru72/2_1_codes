@@ -1,6 +1,5 @@
 
 //Task 1. Write a code to implement the BFS algorithm
-#include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
 
@@ -55,16 +54,16 @@ void enqueue(int val)
 int dequeue()
 {
     int store = 0;
-    node *newNode = head;
+    node *temp = head;
     if (isEmpty())
     {
         return store;
     }
     else
     {
-        store = newNode->val; // storing the value of the first node
-        head = newNode->next;
-        delete newNode;
+        store = temp->val; // storing the value of the first node
+        head = temp->next;
+        delete temp;
         return store;
     }
 }
