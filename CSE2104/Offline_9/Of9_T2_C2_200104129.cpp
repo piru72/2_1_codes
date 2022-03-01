@@ -1,3 +1,5 @@
+// Task 2. Write a code for recursive pre-order,  inorder & post-order binary tree traversal
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -45,6 +47,8 @@ void create_tree()
 
 void pre_order(Node *node)
 {
+    if (node == NULL)
+        return;
     cout << node->data << " ";
     pre_order(node->left);
     pre_order(node->right);
@@ -52,6 +56,8 @@ void pre_order(Node *node)
 
 void in_order(Node *node)
 {
+    if (node == NULL)
+        return;
     in_order(node->left);
     cout << node->data << " ";
     in_order(node->right);
@@ -59,7 +65,8 @@ void in_order(Node *node)
 
 void post_order(Node *node)
 {
-
+    if (node == NULL)
+        return;
     post_order(node->left);
     post_order(node->right);
     cout << node->data << " ";
