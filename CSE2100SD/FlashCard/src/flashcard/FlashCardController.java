@@ -68,7 +68,6 @@ public class FlashCardController implements Initializable {
             Scene scene = new Scene(root);
 
             CreateCardController createCard = loader.getController();
-            
             createCard.visibilitySetter();
 
             Stage stageCreate = (Stage) ((Node) event.getSource()).getScene().getWindow();

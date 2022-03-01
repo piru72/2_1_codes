@@ -15,6 +15,9 @@ struct node
     }
 };
 
+node[5]
+
+
 node* head;
 int size=0;
 
@@ -24,7 +27,6 @@ void INSERT_F(int val)
     node* n = new node (val);
     n->next = head;
     head = n;
-    size ++;
 }
 
 
