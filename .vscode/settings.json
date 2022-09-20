@@ -47,10 +47,11 @@
         "xtr1common": "cpp"
     },
     "java.project.sourcePaths": [
+        "CSE2100SD/leap year/src",
         "CSE2100SD/Arefin_labib",
         "CSE2100SD/2nd class/Lab2_Part2/src",
         "CSE2100SD/2nd class/Lab2_JavaSwing/src",
-        "CSE2100SD/leap year/src"
+        ""
     ],
     "C_Cpp.errorSquiggles": "Disabled"
 }

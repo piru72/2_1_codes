@@ -97,8 +97,6 @@ In order:
 1 7 5 6 10 2 9 3 8 4
 Post order:
 1 5 10 6 7 3 4 8 9 2
-Level order:
-2 7 9 1 6 8 5 10 3 4
 */
 
   /*          2

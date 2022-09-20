@@ -24,3 +24,9 @@
 /CSE2100SD/JavaFXApplication8/nbproject/private/
 /CSE2100SD/JavaFXApplication8/build/
 /CSE2100SD/JavaFXApplication8/dist/
+*.exe
+*.cph
+*.vscode
+*.o
+*.json
+tempCodeRunnerFile.cpp
